@@ -1,0 +1,11 @@
+listing_id,property_type,city,state,country,price,currency,bedrooms,bathrooms,area_sqft,listing_status,listed_date,listing_url
+RE-3001,Apartment,Austin,TX,USA,325000,USD,2,2,1150,For Sale,2026-07-02,https://example-realty.com/listings/re-3001
+RE-3002,Single Family Home,Denver,CO,USA,542000,USD,4,3,2400,For Sale,2026-07-05,https://example-realty.com/listings/re-3002
+RE-3003,Condo,Miami,FL,USA,410000,USD,3,2,1320,For Sale,2026-07-08,https://example-realty.com/listings/re-3003
+RE-3004,Townhouse,Charlotte,NC,USA,289000,USD,3,2,1580,Pending,2026-07-10,https://example-realty.com/listings/re-3004
+RE-3005,Apartment,Ahmedabad,GJ,India,8500000,INR,2,2,980,For Sale,2026-07-12,https://example-realty.com/listings/re-3005
+RE-3006,Villa,Ahmedabad,GJ,India,21000000,INR,4,4,3200,For Sale,2026-07-14,https://example-realty.com/listings/re-3006
+RE-3007,Single Family Home,Phoenix,AZ,USA,398000,USD,3,2,1890,For Sale,2026-07-16,https://example-realty.com/listings/re-3007
+RE-3008,Studio,Seattle,WA,USA,265000,USD,1,1,610,Sold,2026-07-18,https://example-realty.com/listings/re-3008
+RE-3009,Condo,Toronto,ON,Canada,610000,CAD,2,2,1100,For Sale,2026-07-20,https://example-realty.com/listings/re-3009
+RE-3010,Duplex,Nashville,TN,USA,455000,USD,4,3,2100,For Sale,2026-07-22,https://example-realty.com/listings/re-3010

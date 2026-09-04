@@ -1,0 +1,10 @@
+listing_id,type,name,city,country,price_per_night,currency,rating,review_count,availability,listing_url
+TR-5001,Hotel,Seaside Grand Hotel,Miami,USA,189.00,USD,4.5,2130,Available,https://example-travel.com/stay/tr-5001
+TR-5002,Vacation Rental,Downtown Loft Apartment,Austin,USA,95.00,USD,4.7,540,Available,https://example-travel.com/stay/tr-5002
+TR-5003,Hotel,Riverside Boutique Inn,Ahmedabad,India,3200.00,INR,4.3,318,Available,https://example-travel.com/stay/tr-5003
+TR-5004,Resort,Palm Bay Beach Resort,Goa,India,6800.00,INR,4.6,1275,Available,https://example-travel.com/stay/tr-5004
+TR-5005,Hostel,Backpacker Central Hostel,Bangkok,Thailand,18.00,USD,4.1,890,Available,https://example-travel.com/stay/tr-5005
+TR-5006,Vacation Rental,Mountain View Cabin,Denver,USA,145.00,USD,4.8,412,Sold Out,https://example-travel.com/stay/tr-5006
+TR-5007,Hotel,City Center Business Hotel,London,UK,175.00,GBP,4.2,980,Available,https://example-travel.com/stay/tr-5007
+TR-5008,Flight,Economy Round-Trip - JFK to LHR,New York,USA,612.00,USD,,,Available,https://example-travel.com/flights/tr-5008
+TR-5009,Flight,Economy One-Way - DEL to DXB,Delhi,India,215.00,USD,,,Available,https://example-travel.com/flights/tr-5009

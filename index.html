@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-style-mode" content="1"> <!-- 0 == light, 1 == dark -->
+
+    <title>CoderAIM | Enterprise Data Scraping, AI Parsing & API Automation</title>
+
+        <meta name="description" content="CoderAIM delivers scalable web crawling, real-time scraping, AI-powered data parsing, and API automation for businesses seeking data-driven growth.">
+<meta name="keywords" content="CoderAIM, web scraping, enterprise data crawling, AI data parsing, real-time scraping, data automation, API integration, data visualization, data intelligence">
+<meta name="author" content="CoderAIM">
+
+<meta property="og:title" content="CoderAIM | Smarter Data Scraping for Enterprises">
+<meta property="og:description" content="Unlock the power of real-time data and automation with CoderAIM's enterprise scraping solutions.">
+<meta property="og:image" content="https://coderaim.com/assets/images/logo/logo.png">
+<meta property="og:url" content="https://coderaim.com">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CoderAIM">
+
+<!-- Favicon -->
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+    
+    <!-- CSS ============================================ -->
+    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/feature.css">
+    <link rel="stylesheet" href="assets/css/plugins/animation.css">
+    <link rel="stylesheet" href="assets/css/plugins/slick.css">
+    <link rel="stylesheet" href="assets/css/plugins/slick-theme.css">
+    <link rel="stylesheet" href="assets/css/plugins/bootstrap-select.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/prism.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <main class="page-wrapper">
+        <div id="my_switcher" class="my_switcher">
+            <ul>
+                <li>
+                    <a href="javascript: void(0);" data-theme="light" class="setColor light">
+                        <img src="assets/images/light/switch/sun-01.svg" alt="Sun images"><span title="Light Mode"> Light</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" data-theme="dark" class="setColor dark">
+                        <img src="assets/images/light/switch/vector.svg" alt="Vector Images"><span title="Dark Mode"> Dark</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Start Header Area  -->
+        <header class="rainbow-header header-default header-transparent header-sticky">
+            <div class="container position-relative">
+                <div class="row align-items-center row--0">
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <a href="/" class="logo-link">
+                            <h4 class="logo-text">CoderAim</h4>
+                        </a>
+                    </div>                    
+
+                    <div class="col-lg-8 d-none d-lg-block">
+                        <nav class="mainmenu-nav d-none d-lg-flex justify-content-center">
+                            <ul class="mainmenu">
+                                <li><a href="/" class="active">Home</a></li>
+                                <li><a href="service">Services</a></li>
+                                <li><a href="about">About</a></li>
+                                <li><a href="contact">Contact</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 col-6 position-static">
+                        <div class="header-right">
+
+                            <!-- Start Header Btn  -->
+                            <div class="header-btn">
+                                <a class="rainbow-gradient-btn" href="contact"><span>Get Start</span></a>
+                            </div>
+                            <!-- End Header Btn  -->
+
+                            <!-- Start Mobile-Menu-Bar -->
+                            <div class="mobile-menu-bar ml--5 d-flex justify-content-end d-lg-none">
+                                <div class="hamberger">
+                                    <button class="hamberger-button">
+                                        <i class="fa-sharp fa-regular fa-bars"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Start Mobile-Menu-Bar -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- End Header Area  -->
+        <div class="popup-mobile-menu">
+            <div class="inner-popup">
+                <div class="header-top">
+                    <div class="logo">
+                        <a href="/" class="logo-link">
+                            <h4 class="logo-text">CoderAim</h4>
+                        </a>
+                    </div>
+                    <div class="close-menu">
+                        <button class="close-button">
+                            <i class="fa-sharp fa-regular fa-x"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <ul class="mainmenu">
+                                <li><a href="/" class="active">Home</a></li>
+                                <li><a href="service">Services</a></li>
+                                <li><a href="about">About</a></li>
+                                <li><a href="contact">Contact</a></li>
+                            </ul>
+                </div>
+
+                <!-- Start Header Btn  -->
+                <div class="header-btn d-block d-md-none">
+                    <a class="btn-default @@btnClass" href="contact">Get Started</a>
+                </div>
+                <!-- End Header Btn  -->
+            </div>
+        </div>
+
+        <!-- Imroz Preloader -->
+        <div class="preloader">
+            <div class='loader'>
+                <div class='circle'></div>
+                <div class='circle'></div>
+                <div class='circle'></div>
+                <div class='circle'></div>
+                <div class='circle'></div>
+            </div>
+        </div>
+
+        <!-- Start Slider Area  -->
+        <div class="slider-area slider-style-1 variation-default slider-bg-image bg-banner1 slider-bg-shape" data-black-overlay="1">
+            <!-- <div class="bg-blend-top bg_dot-mask"></div> -->
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="inner text-center mt--140">
+                            <h1 class="title display-one text-left">Grow with Vision <br>
+                                <span><b class="theme-gradient is-visible">Build With AIM</b></span>
+                                <!-- <span class="header-caption text-left">
+                                    <span class="cd-headline rotate-1 text-left">
+                                        <span class="cd-words-wrapper" style="width: 250px;">
+                                            <b class="theme-gradient is-visible">Build With AIM</b>
+                                            <b class="theme-gradient is-hidden">Build With Trust</b>
+                                            <b class="theme-gradient is-hidden">Build With Values</b>
+                                        </span>
+                                    </span> -->
+                            </h1>
+                            <p class="description">We are offering <strong>Enterprise-Grade Data Scraping</strong>, Powered by Intelligence.</p>
+                            <div class="mt--30">
+                                <a class="btn-default btn-border" href="request-sample-data.html">Get Free Sample Data</a>
+                            </div>
+                            <div class="inner-shape">
+                                <img src="assets/images/bg/icon-shape/icon-shape-one.png" alt="Icon Shape" class="iconshape iconshape-one">
+                                <img src="assets/images/bg/icon-shape/icon-shape-two.png" alt="Icon Shape" class="iconshape iconshape-two">
+                                <img src="assets/images/bg/icon-shape/icon-shape-three.png" alt="Icon Shape" class="iconshape iconshape-three">
+                                <img src="assets/images/bg/icon-shape/icon-shape-four.png" alt="Icon Shape" class="iconshape iconshape-four">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Slider Area  -->
+
+        <!-- Start Brand Area -->
+        <!-- <div class="rainbow-brand-area rainbow-section-gap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title rating-title text-center sal-animate" data-sal="slide-up" data-sal-duration="700" data-sal-delay="100">
+                            <p class="b1 mb--0 small-title">truest 800,000+ HIGHLY PRODUCTIVE Company</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 mt--10">
+                        <ul class="brand-list brand-style-2 slider-brand slider-brand-activation">
+                            <li class="slide-single-layout"><a href="#"><img src="assets/images/brand/strapi.png" alt="Brand Image"></a></li>
+                            <li class="slide-single-layout"><a href="#"><img src="assets/images/brand/mapbox.png" alt="Brand Image"></a></li>
+                            <li class="slide-single-layout"><a href="#"><img src="assets/images/brand/stenciljs.png" alt="Brand Image"></a></li>
+                            <li class="slide-single-layout"><a href="#"><img src="assets/images/brand/spotify.png" alt="Brand Image"></a></li>
+                            <li class="slide-single-layout"><a href="#"><img src="assets/images/brand/woocommerce.png" alt="Brand Image"></a></li>
+                            <li class="slide-single-layout"><a href="#"><img src="assets/images/brand/slack.png" alt="Brand Image"></a></li>
+                            <li class="slide-single-layout"><a href="#"><img src="assets/images/brand/strapi.png" alt="Brand Image"></a></li>
+                            <li class="slide-single-layout"><a href="#"><img src="assets/images/brand/mapbox.png" alt="Brand Image"></a></li>
+                            <li class="slide-single-layout"><a href="#"><img src="assets/images/brand/stenciljs.png" alt="Brand Image"></a></li>
+                            <li class="slide-single-layout"><a href="#"><img src="assets/images/brand/spotify.png" alt="Brand Image"></a></li>
+                            <li class="slide-single-layout"><a href="#"><img src="assets/images/brand/woocommerce.png" alt="Brand Image"></a></li>
+                            <li class="slide-single-layout"><a href="#"><img src="assets/images/brand/slack.png" alt="Brand Image"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Start Tab__Style--one Area  -->
+        <div class="rainbow-service-area rainbow-section-gap" id="service">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title text-center pb--60" data-sal="slide-up" data-sal-duration="700" data-sal-delay="100">
+                            <h4 class="subtitle">
+                                <span class="theme-gradient">Our Services</span>
+                            </h4>
+                            <h2 class="title mb--0">Unlock the Full Power of Web Data with <span class="logo-text">CoderAim</span></h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row row--30 align-items-center">
+                    <div class="col-lg-12">
+                        <div class="rainbow-default-tab style-three generator-tab-defalt">
+                            <ul class="nav nav-tabs tab-button" role="tablist">
+                                <li class="nav-item tabs__tab " role="presentation">
+                                    <button class="nav-link rainbow-gradient-btn without-shape-circle active" id="video-generator-tab" data-bs-toggle="tab" data-bs-target="#video-generate" type="button" role="tab" aria-controls="video-generate" aria-selected="false"><span class="generator-icon"><img
+                                                src="assets/images/icons/code-g.png" alt="Vedio Generator Icon">Custom Web Data Extraction</span><span class="border-bottom-style"></span></button>
+                                </li>
+                                </li>
+                                <li class="nav-item tabs__tab " role="presentation">
+                                    <button class="nav-link rainbow-gradient-btn without-shape-circle" id="photo-generator-tab" data-bs-toggle="tab" data-bs-target="#photo-generate" type="button" role="tab" aria-controls="photo-generate" aria-selected="false"><span class="generator-icon"><img
+                                                src="assets/images/icons/code-g.png" alt="Vedio Generator Icon">AI-Powered Data Parsing</span><span class="border-bottom-style"></span></button>
+                                </li>
+                                <li class="nav-item tabs__tab " role="presentation">
+                                    <button class="nav-link rainbow-gradient-btn without-shape-circle" id="text-generator-tab" data-bs-toggle="tab" data-bs-target="#text-generate" type="button" role="tab" aria-controls="text-generate" aria-selected="false"><span class="generator-icon"><img
+                                                src="assets/images/icons/code-g.png" alt="Vedio Generator Icon">API Integration & Automation</span><span class="border-bottom-style"></span></button>
+                                </li>
+                                <li class="nav-item tabs__tab " role="presentation">
+                                    <button class="nav-link rainbow-gradient-btn without-shape-circle" id="code-generator-tab" data-bs-toggle="tab" data-bs-target="#code-generate" type="button" role="tab" aria-controls="code-generate" aria-selected="false"><span class="generator-icon"><img
+                                                src="assets/images/icons/code-g.png" alt="Vedio Generator Icon">Real-Time Data Feeds</span><span class="border-bottom-style"></span></button>
+                                </li>
+                            </ul>
+
+                            <div class="rainbow-tab-content tab-content">
+                                <div class="tab-pane fade show active" id="video-generate" role="tabpanel" aria-labelledby="video-generator-tab">
+                                    <div class="inner">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="section-title">
+                                                    <h3 class="title">We build tailored scraping solutions to extract exactly the data you need — from any website, at any scale</h3>
+                                                    <div class="features-section">
+                                                        <ul class="list-style--1">
+                                                            <li><i class="fa-regular fa-circle-check"></i>Tailored to your needs</li>
+                                                            <li><i class="fa-regular fa-circle-check"></i>Any website, any scale</li>
+                                                            <li><i class="fa-regular fa-circle-check"></i>Structured, clean data</li>
+                                                            <li><i class="fa-regular fa-circle-check"></i>Flexible scheduling & formats</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="read-more"><a class="btn-default color-blacked" href="service">Start Exploring Now <i
+                                                                class="fa-sharp fa-solid fa-arrow-right"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 mt_md--30 mt_sm--30">
+                                                <div class="export-img">
+                                                    <div class="inner-without-padding">
+                                                        <div class="export-img img-bg-shape">
+                                                            <img src="assets/images/custom_web_scraping.png" alt="Chat example Image">
+                                                            <div class="image-shape"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="photo-generate" role="tabpanel" aria-labelledby="photo-generator-tab">
+                                    <div class="inner">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="section-title">
+                                                    <h3 class="title">Leveraging AI to clean, structure, and normalize messy web data into business-ready formats</h3>
+                                                    <div class="features-section">
+                                                        <ul class="list-style--1">
+                                                            <li><i class="fa-regular fa-circle-check"></i>Clean & structured output</li>
+                                                            <li><i class="fa-regular fa-circle-check"></i>ML-based pattern detection</li>
+                                                            <li><i class="fa-regular fa-circle-check"></i>Smart format conversion</li>
+                                                            <li><i class="fa-regular fa-circle-check"></i>Adapts to data changes</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="read-more"><a class="btn-default color-blacked" href="service">Start Exploring Now <i
+                                                                class="fa-sharp fa-solid fa-arrow-right"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 mt_md--30 mt_sm--30">
+                                                <div class="export-img">
+                                                    <div class="inner-without-padding">
+                                                        <div class="export-img img-bg-shape">
+                                                            <img src="assets/images/ai_data_parsing.png" alt="Chat example Image">
+                                                            <div class="image-shape"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="text-generate" role="tabpanel" aria-labelledby="text-generator-tab">
+                                    <div class="inner">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="section-title">
+                                                    <h3 class="title">Seamlessly integrate our data pipelines into your workflows with custom APIs and automation support</h3>
+                                                    <div class="features-section">
+                                                        <ul class="list-style--1">
+                                                            <li><i class="fa-regular fa-circle-check"></i>Seamless API connectivity</li>
+                                                            <li><i class="fa-regular fa-circle-check"></i>Real-time data delivery</li>
+                                                            <li><i class="fa-regular fa-circle-check"></i>Workflow automation</li>
+                                                            <li><i class="fa-regular fa-circle-check"></i>Scalable system integration</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="read-more"><a class="btn-default color-blacked" href="service">Start Exploring Now <i
+                                                                class="fa-sharp fa-solid fa-arrow-right"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 mt_md--30 mt_sm--30">
+                                                <div class="export-img">
+                                                    <div class="inner-without-padding">
+                                                        <div class="export-img img-bg-shape">
+                                                            <img src="assets/images/api_integration_automation.png" alt="Chat example Image">
+                                                            <div class="image-shape"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="code-generate" role="tabpanel" aria-labelledby="code-generator-tab">
+                                    <div class="inner">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="section-title">
+                                                    <h3 class="title">Get continuous, real-time access to the latest data to fuel your analytics, dashboards, and decision-making tools.</h3>
+                                                    <div class="features-section">
+                                                        <ul class="list-style--1">
+                                                            <li><i class="fa-regular fa-circle-check"></i>Live data updates</li>
+                                                            <li><i class="fa-regular fa-circle-check"></i>Instant access to insights</li>
+                                                            <li><i class="fa-regular fa-circle-check"></i>Auto-refreshing feeds</li>
+                                                            <li><i class="fa-regular fa-circle-check"></i>High-frequency monitoring</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="read-more"><a class="btn-default color-blacked" href="service">Start Exploring Now <i
+                                                                class="fa-sharp fa-solid fa-arrow-right"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 mt_md--30 mt_sm--30">
+                                                <div class="export-img">
+                                                    <div class="inner-without-padding">
+                                                        <div class="export-img img-bg-shape">
+                                                            <img src="assets/images/realtime_data_feeds.png">
+                                                            <div class="image-shape"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Tab__Style--one Area  -->
+
+
+        <!-- Start Service__Style--one Area  -->
+        <div class="rainbow-service-area rainbow-section-gap rainbow-section-gapBottom-big" id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title text-left" data-sal="slide-up" data-sal-duration="400" data-sal-delay="150">
+                            <h4 class="subtitle">
+                                <span class="theme-gradient">Empowering Businesses with <span class="logo-text" style="font-size: 125%;">CoderAim</span></span>
+                            </h4>
+                            <h2 class="title mb--60">
+                                Smart Data Solutions, Not <br> Just Tools
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="service-wrapper rainbow-service-slider-actvation slick-grid-15 rainbow-slick-dot rainbow-gradient-arrows">
+                            <div class="slide-single-layout">
+                                <div class="rainbow-box-card card-style-default aiwave-service-default has-bg-shaped">
+                                    <div class="inner">
+                                        <div class="icon">
+                                            <img src="assets/images/icons/service-icon-01.svg" alt="Servece Icon">
+                                        </div>
+                                        <div class="description centered-shape">
+                                            <h5 class="title">Enterprise Web Crawling</h5>
+                                            <p class="desc">Scalable crawling infrastructure for large-scale data extraction from complex sites.</p>
+                                            <a class="read-more-btn" href="service">Explore More <span><i
+                                                        class="fa-sharp fa-solid fa-arrow-right"></i></span></a>
+                                        </div>
+                                    </div>
+                                    <div class="bg-shaped">
+                                        <img src="assets/images/service/bg.png" alt="" class="bg shape-dark">
+                                        <img src="assets/images/service/bg-hover.png" alt="" class="bg-hover shape-dark">
+                                        <img src="assets/images/light/service/bg.png" alt="" class="bg shape-light">
+                                        <img src="assets/images/light/service/bg-hover.png" alt="" class="bg-hover shape-light">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide-single-layout">
+                                <div class="rainbow-box-card card-style-default aiwave-service-default has-bg-shaped">
+                                    <div class="inner">
+                                        <div class="icon">
+                                            <img src="assets/images/icons/service-icon-02.svg" alt="Servece Icon">
+                                        </div>
+                                        <div class="description centered-shape">
+                                            <h5 class="title">AI Data Scraping</h5>
+                                            <p class="desc">Harness machine learning to extract clean, meaningful data from unstructured sources.</p>
+                                            <a class="read-more-btn" href="service">Explore More <span><i
+                                                        class="fa-sharp fa-solid fa-arrow-right"></i></span></a>
+                                        </div>
+                                    </div>
+                                    <div class="bg-shaped">
+                                        <img src="assets/images/service/bg.png" alt="" class="bg shape-dark">
+                                        <img src="assets/images/service/bg-hover.png" alt="" class="bg-hover shape-dark">
+                                        <img src="assets/images/light/service/bg.png" alt="" class="bg shape-light">
+                                        <img src="assets/images/light/service/bg-hover.png" alt="" class="bg-hover shape-light">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide-single-layout">
+                                <div class="rainbow-box-card card-style-default aiwave-service-default has-bg-shaped">
+                                    <div class="inner">
+                                        <div class="icon">
+                                            <img src="assets/images/icons/service-icon-03.svg" alt="Servece Icon">
+                                        </div>
+                                        <div class="description centered-shape">
+                                            <h5 class="title">Real-Time Scraping</h5>
+                                            <p class="desc">Get fresh, live data in real-time — ideal for fast-changing markets and applications.</p>
+                                            <a class="read-more-btn" href="service">Explore More <span><i
+                                                        class="fa-sharp fa-solid fa-arrow-right"></i></span></a>
+                                        </div>
+                                    </div>
+                                    <div class="bg-shaped">
+                                        <img src="assets/images/service/bg.png" alt="" class="bg shape-dark">
+                                        <img src="assets/images/service/bg-hover.png" alt="" class="bg-hover shape-dark">
+                                        <img src="assets/images/light/service/bg.png" alt="" class="bg shape-light">
+                                        <img src="assets/images/light/service/bg-hover.png" alt="" class="bg-hover shape-light">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide-single-layout">
+                                <div class="rainbow-box-card card-style-default aiwave-service-default has-bg-shaped">
+                                    <div class="inner">
+                                        <div class="icon">
+                                            <img src="assets/images/icons/service-icon-01.svg" alt="Servece Icon">
+                                        </div>
+                                        <div class="description centered-shape">
+                                            <h5 class="title">Web Scraping API</h5>
+                                            <p class="desc">Plug-and-play scraping APIs for seamless integration with your internal systems.</p>
+                                            <a class="read-more-btn" href="service">Explore More <span><i
+                                                        class="fa-sharp fa-solid fa-arrow-right"></i></span></a>
+                                        </div>
+                                    </div>
+                                    <div class="bg-shaped">
+                                        <img src="assets/images/service/bg.png" alt="" class="bg shape-dark">
+                                        <img src="assets/images/service/bg-hover.png" alt="" class="bg-hover shape-dark">
+                                        <img src="assets/images/light/service/bg.png" alt="" class="bg shape-light">
+                                        <img src="assets/images/light/service/bg-hover.png" alt="" class="bg-hover shape-light">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide-single-layout">
+                                <div class="rainbow-box-card card-style-default aiwave-service-default has-bg-shaped">
+                                    <div class="inner">
+                                        <div class="icon">
+                                            <img src="assets/images/icons/service-icon-02.svg" alt="Servece Icon">
+                                        </div>
+                                        <div class="description centered-shape">
+                                            <h5 class="title">Data Analytics</h5>
+                                            <p class="desc">Transform raw data into actionable insights to drive smarter business outcomes.</p>
+                                            <a class="read-more-btn" href="service">Explore More <span><i
+                                                        class="fa-sharp fa-solid fa-arrow-right"></i></span></a>
+                                        </div>
+                                    </div>
+                                    <div class="bg-shaped">
+                                        <img src="assets/images/service/bg.png" alt="" class="bg shape-dark">
+                                        <img src="assets/images/service/bg-hover.png" alt="" class="bg-hover shape-dark">
+                                        <img src="assets/images/light/service/bg.png" alt="" class="bg shape-light">
+                                        <img src="assets/images/light/service/bg-hover.png" alt="" class="bg-hover shape-light">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide-single-layout">
+                                <div class="rainbow-box-card card-style-default aiwave-service-default has-bg-shaped">
+                                    <div class="inner">
+                                        <div class="icon">
+                                            <img src="assets/images/icons/service-icon-03.svg" alt="Servece Icon">
+                                        </div>
+                                        <div class="description centered-shape">
+                                            <h5 class="title">Data Visualization</h5>
+                                            <p class="desc">Present complex data in interactive, intuitive visual formats for decision-makers.</p>
+                                            <a class="read-more-btn" href="service">Explore More <span><i
+                                                        class="fa-sharp fa-solid fa-arrow-right"></i></span></a>
+                                        </div>
+                                    </div>
+                                    <div class="bg-shaped">
+                                        <img src="assets/images/service/bg.png" alt="" class="bg shape-dark">
+                                        <img src="assets/images/service/bg-hover.png" alt="" class="bg-hover shape-dark">
+                                        <img src="assets/images/light/service/bg.png" alt="" class="bg shape-light">
+                                        <img src="assets/images/light/service/bg-hover.png" alt="" class="bg-hover shape-light">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Service__Style--one Area  -->
+
+        <!-- Start Advanced Tab area -->
+        <div class="rainbow-advance-tab-area aiwave-bg-gradient rainbow-section-gap-big">
+            <div class="container">
+                <div class="html-tabs" data-tabs="true">
+                    <div class="row row--30">
+                        <div class="col-lg-12">
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active advance-tab-content-1 right-top" id="home-3" role="tabpanel" aria-labelledby="home-tab-3">
+                                    <div class="rainbow-splite-style">
+                                        <div class="split-wrapper">
+                                            <div class="row g-0 radius-10 align-items-center">
+                                                <div class="col-lg-12 col-xl-5 col-12">
+                                                    <div class="thumbnail">
+                                                        <img class="radius" src="assets/images/split/split-1.png" alt="split Images">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-xl-7 col-12">
+                                                    <div class="split-inner">
+                                                        <div class="subtitle">
+                                                            <span class="theme-gradient">How it work</span>
+                                                        </div>
+                                                        <h2 class="title sal-animate" data-sal="slide-up" data-sal-duration="400" data-sal-delay="200">Connect
+                                                            with Al</h2>
+                                                        <p class="description sal-animate" data-sal="slide-up" data-sal-duration="400" data-sal-delay="300">Dentify the
+                                                            Leverage intelligent scraping pipelines powered by AI for higher accuracy, adaptability, and lower maintenance.</p>
+                                                        <div class="view-more-button mt--35 sal-animate" data-sal="slide-up" data-sal-duration="400" data-sal-delay="400">
+                                                            <a class="btn-default color-blacked" href="contact">Try
+                                                                It Now <i
+                                                                    class="fa-sharp fa-light fa-arrow-right ml--5"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade advance-tab-content-1" id="profile-3" role="tabpanel" aria-labelledby="profile-tab-3">
+                                    <div class="rainbow-splite-style">
+                                        <div class="split-wrapper">
+                                            <div class="row g-0 radius-10 align-items-center">
+                                                <div class="col-lg-12 col-xl-5 col-12">
+                                                    <div class="thumbnail">
+                                                        <img class="radius" src="assets/images/split/split-4.png" alt="split Images">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-xl-7 col-12">
+                                                    <div class="split-inner">
+                                                        <div class="subtitle">
+                                                            <span class="theme-gradient">Exploring Efficiency</span>
+                                                        </div>
+                                                        <h2 class="title sal-animate" data-sal="slide-up" data-sal-duration="400" data-sal-delay="200">Streamline
+                                                            Your
+                                                            Workflow</h2>
+                                                        <p class="description sal-animate" data-sal="slide-up" data-sal-duration="400" data-sal-delay="300">Discover
+                                                            tools
+                                                            and techniques to optimize your workflow, making your
+                                                            tasks
+                                                            more efficient and manageable.</p>
+                                                        <div class="view-more-button mt--35 sal-animate" data-sal="slide-up" data-sal-duration="400" data-sal-delay="400">
+                                                            <a class="btn-default color-blacked" href="contact">Try
+                                                                It Now <i
+                                                                    class="fa-sharp fa-light fa-arrow-right ml--5"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade advance-tab-content-1" id="contact-3" role="tabpanel" aria-labelledby="contact-tab-3">
+                                    <div class="rainbow-splite-style">
+                                        <div class="split-wrapper">
+                                            <div class="row g-0 radius-10 align-items-center">
+                                                <div class="col-lg-12 col-xl-5 col-12">
+                                                    <div class="thumbnail">
+                                                        <img class="radius" src="assets/images/split/split-3.png" alt="split Images">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-xl-7 col-12">
+                                                    <div class="split-inner">
+                                                        <div class="subtitle">
+                                                            <span class="theme-gradient">Automation</span>
+                                                        </div>
+                                                        <h2 class="title sal-animate" data-sal="slide-up" data-sal-duration="400" data-sal-delay="200">Automate repetitive data workflows</h2>
+                                                        <p class="description sal-animate" data-sal="slide-up" data-sal-duration="400" data-sal-delay="300">Gain
+                                                            Let us help you automate repetitive data collection and processing tasks to save time and reduce errors.</p>
+                                                        <div class="view-more-button mt--35 sal-animate" data-sal="slide-up" data-sal-duration="400" data-sal-delay="400">
+                                                            <a class="btn-default color-blacked" href="contact">Try
+                                                                It Now <i
+                                                                    class="fa-sharp fa-light fa-arrow-right ml--5"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade advance-tab-content-1" id="explore-3" role="tabpanel" aria-labelledby="explore-tab-3">
+                                    <div class="rainbow-splite-style">
+                                        <div class="split-wrapper">
+                                            <div class="row g-0 radius-10 align-items-center">
+                                                <div class="col-lg-12 col-xl-5 col-12">
+                                                    <div class="thumbnail">
+                                                        <img class="radius" src="assets/images/split/split-5.png" alt="split Images">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-xl-7 col-12">
+                                                    <div class="split-inner">
+                                                        <div class="subtitle">
+                                                            <span class="theme-gradient">Mastering Data
+                                                                Analysis</span>
+                                                        </div>
+                                                        <h2 class="title sal-animate" data-sal="slide-up" data-sal-duration="400" data-sal-delay="200">
+                                                            Demystifying
+                                                            Data Analytics</h2>
+                                                        <p class="description sal-animate" data-sal="slide-up" data-sal-duration="400" data-sal-delay="300">Transform raw data into actionable insights with custom dashboards, analytics models, and powerful visual tools.
+                                                        </p>
+                                                        <div class="view-more-button mt--35 sal-animate" data-sal="slide-up" data-sal-duration="400" data-sal-delay="400">
+                                                            <a class="btn-default color-blacked" href="contact">Try
+                                                                It Now <i
+                                                                    class="fa-sharp fa-light fa-arrow-right ml--5"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 mt--60">
+                            <div class="advance-tab-button advance-tab-button-1 right-top">
+                                <ul class="nav nav-tabs tab-button-list" id="myTab-3" role="tablist">
+
+                                    <li class="col-lg-3 nav-item" role="presentation">
+                                        <a href="#" class="nav-link tab-button active" id="home-tab-3" data-bs-toggle="tab" data-bs-target="#home-3" role="tab" aria-controls="home-3" aria-selected="true">
+                                            <div class="tab">
+                                                <div class="count-text">
+                                                    <span class="theme-gradient">01</span>
+                                                </div>
+                                                <h4 class="title">Connect with AI </h4>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li class="col-lg-3 nav-item" role="presentation">
+                                        <a href="#" class="nav-link tab-button" id="profile-tab-3" data-bs-toggle="tab" data-bs-target="#profile-3" role="tab" aria-controls="profile-3" aria-selected="false">
+                                            <div class="tab">
+                                                <div class="count-text">
+                                                    <span class="theme-gradient">02</span>
+                                                </div>
+                                                <h4 class="title">Streamline Workflow</h4>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li class="col-lg-3 nav-item" role="presentation">
+                                        <a href="#" class="nav-link tab-button" id="contact-tab-3" data-bs-toggle="tab" data-bs-target="#contact-3" role="tab" aria-controls="contact-3" aria-selected="false">
+                                            <div class="tab">
+                                                <div class="count-text">
+                                                    <span class="theme-gradient">03</span>
+                                                </div>
+                                                <h4 class="title">Automation</h4>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="col-lg-3 nav-item" role="presentation">
+                                        <a href="#" class="nav-link tab-button" id="explore-tab-3" data-bs-toggle="tab" data-bs-target="#explore-3" role="tab" aria-controls="explore-3" aria-selected="false">
+                                            <div class="tab">
+                                                <div class="count-text">
+                                                    <span class="theme-gradient">04</span>
+                                                </div>
+                                                <h4 class="title">Data Analysis</h4>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-shape">
+                <img src="assets/images/bg/split-bg-shape.png" alt="Bg Shape">
+            </div>
+        </div>
+        <!-- End Advanced Tab Area -->
+
+
+        <!-- Start Collabration-Style-One  -->
+        <!-- <div class="rainbow-collobration-area rainbow-section-gap-big">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title text-center" data-sal="slide-up" data-sal-duration="700" data-sal-delay="100">
+                            <h4 class="subtitle ">
+                                <span class="theme-gradient">CoderAim Integration</span>
+                            </h4>
+                            <h2 class="title mb--20">Driving Smart Decisions with<br>intelligent Data</h2>
+                            <a class="btn-default btn-large color-blacked" href="contact">Try It Now <i
+                                    class="fa-sharp fa-light fa-arrow-right ml--5"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 mt--60">
+                        <div class="collabration-image-section">
+                            <img src="assets/images/split/split-2.png" alt="collabration-image">
+                            <div class="logo-section">
+                                <div class="center-logo">
+                                    <img class="shape-dark" src="assets/images/split/split-2-logo.png" alt="Small Logo">
+                                    <img class="shape-light" src="assets/images/light/split/split-2-logo.png" alt="Small Logo">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- End Collabration-Style-One  -->
+
+
+        <!-- Start CTA Style-one Area  -->
+        <!-- <div class="rainbow-rn-cta">
+            <div class="container">
+                <div class="row row--0 align-items-center content-wrapper">
+                    <div class="col-lg-8">
+                        <div class="inner">
+                            <div class="content text-left">
+                                <h4 class="title sal-animate" data-sal="slide-up" data-sal-duration="400" data-sal-delay="200">Join our aI Experts community</h4>
+                                <p class="sal-animate" data-sal="slide-up" data-sal-duration="400" data-sal-delay="300">
+                                    Meet and learn from 80+ creators & companies who share how thay use AI to create
+                                    better content at lightning speed.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="right-content">
+                            <div class="call-to-btn text-start text-lg-end sal-animate" data-sal="slide-up" data-sal-duration="400" data-sal-delay="400">
+                                <div class="team-image">
+                                    <img src="assets/images/cta-img/team-01.png" alt="Group Image">
+                                </div>
+                                <a class="btn-default" href="#">Join Now Today Free</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-shape">
+                        <img src="assets/images/cta-img/bg-shape-01.png" alt="BG Shape">
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- End CTA Style-one Area  -->
+
+        <!-- Pricing Part -->
+        <!-- <div class="aiwave-pricing-area wrapper rainbow-section-gap-big">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title text-center" data-sal="slide-up" data-sal-duration="400" data-sal-delay="150">
+                            <h4 class="subtitle">
+                                <span class="theme-gradient">Pricing</span>
+                            </h4>
+                            <h2 class="title w-600 mb--40">
+                                Pricing plans for everyone
+                            </h2>
+                        </div>
+
+                        <nav class="aiwave-tab">
+                            <div class="tab-btn-grp nav nav-tabs text-center justify-content-center" id="nav-tab" role="tablist">
+                                <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="false">
+                                    Monthly
+                                </button>
+                                <button class="nav-link with-badge active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="true">
+                                    Yearly
+                                    <span class="rainbow-badge-card badge-border">-10%</span>
+                                </button>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <div class="tab-content p-0 bg-transparent border-0 border bg-light" id="nav-tabContent">
+                    <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="row row--15 mt_dec--40">
+                            <div class="col-xl-4 col-lg-6 col-md-6 col-12 mt--40">
+                                <div class="rainbow-pricing style-aiwave">
+                                    <div class="pricing-table-inner">
+                                        <div class="pricing-top">
+                                            <div class="pricing-header">
+                                                <div class="icon">
+                                                    <i class="fa-regular fa-circle-radiation"></i>
+                                                </div>
+                                                <h4 class="title color-var-one">Basic</h4>
+                                                <p class="subtitle">For large teams & corportaions</p>
+                                                <div class="pricing">
+                                                    <span class="price-text">Free</span>
+                                                </div>
+                                            </div>
+                                            <div class="pricing-body">
+                                                <div class="features-section">
+                                                    <h6>Features</h6>
+                                                    <ul class="list-style--1">
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 7,700
+                                                            3-5 day turnarouord
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 6+
+                                                            Naive development
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 5+
+                                                            Task delivered one-by-one
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-sharp fa-regular fa-minus-circle"></i> AI
+                                                            Blog
+                                                            Updates via dashboard & slack
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-sharp fa-regular fa-minus-circle"></i>
+                                                            Advance
+                                                            Updates via dashboard & slack
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pricing-footer">
+                                            <a class="btn-default btn-border" href="#">Get Started</a>
+                                            <p class="bottom-text">Limited Offer</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-6 col-md-6 col-12 mt--40">
+                                <div class="rainbow-pricing style-aiwave active">
+                                    <div class="pricing-table-inner">
+                                        <div class="pricing-top">
+                                            <div class="pricing-header">
+                                                <div class="icon">
+                                                    <i class="fa-sharp fa-regular fa-flower"></i>
+                                                </div>
+                                                <h4 class="title color-var-two">Premium</h4>
+                                                <p class="subtitle">For large teams & corportaions</p>
+                                                <div class="pricing">
+                                                    <span class="price-text">$60.50</span>
+                                                    <span class="text">/Per Month</span>
+
+                                                </div>
+                                            </div>
+                                            <div class="pricing-body">
+                                                <div class="features-section has-show-more">
+                                                    <h6>Features</h6>
+                                                    <ul class="list-style--1 has-show-more-inner-content">
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 12,700
+                                                            7-9 day turnarouord
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 6+
+                                                            Naive development
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 5+
+                                                            Task delivered one-by-one
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 7,700
+                                                            3-5 day turnarouord
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 6+
+                                                            Naive development
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 5+
+                                                            Task delivered one-by-one
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-sharp fa-regular fa-minus-circle"></i> AI
+                                                            Blog
+                                                            Updates via dashboard & slack
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-sharp fa-regular fa-minus-circle"></i>
+                                                            Advance
+                                                            Updates via dashboard & slack
+                                                        </li>
+                                                    </ul>
+                                                    <div class="rbt-show-more-btn">Show More</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pricing-footer">
+                                            <a class="btn-default color-blacked" href="#">Get Started</a>
+                                            <p class="bottom-text">Limited Offer</p>
+                                        </div>
+                                    </div>
+                                    <div class="feature-badge">Best Offer</div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-6 col-md-6 col-12 mt--40">
+                                <div class="rainbow-pricing style-aiwave">
+                                    <div class="pricing-table-inner">
+                                        <div class="pricing-top">
+                                            <div class="pricing-header">
+                                                <div class="icon">
+                                                    <i class="fa-sharp fa-regular fa-waveform-lines"></i>
+                                                </div>
+                                                <h4 class="title color-var-three">Enterprise</h4>
+                                                <p class="subtitle">For large teams & corportaions</p>
+                                                <div class="pricing">
+                                                    <span class="price-text">$80.50</span>
+                                                    <span class="text">/Per Month</span>
+                                                </div>
+                                            </div>
+                                            <div class="pricing-body">
+                                                <div class="features-section has-show-more">
+                                                    <h6>Features</h6>
+                                                    <ul class="list-style--1 has-show-more-inner-content">
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 15,700
+                                                            15-30 day turnarouord
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 6+
+                                                            Naive development
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 5+
+                                                            Task delivered one-by-one
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 7,700
+                                                            3-5 day turnarouord
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 6+
+                                                            Naive development
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 5+
+                                                            Task delivered one-by-one
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-sharp fa-regular fa-minus-circle"></i> AI
+                                                            Blog
+                                                            Updates via dashboard & slack
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-sharp fa-regular fa-minus-circle"></i>
+                                                            Advance
+                                                            Updates via dashboard & slack
+                                                        </li>
+                                                    </ul>
+                                                    <div class="rbt-show-more-btn">Show More</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pricing-footer">
+                                            <a class="btn-default btn-border" href="#">Get Started</a>
+                                            <p class="bottom-text">Limited Offer</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade active show" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <div class="row row--15 mt_dec--40">
+                            <div class="col-xl-4 col-lg-6 col-md-6 col-12 mt--40">
+                                <div class="rainbow-pricing style-aiwave">
+                                    <div class="pricing-table-inner">
+                                        <div class="pricing-top">
+                                            <div class="pricing-header">
+                                                <div class="icon">
+                                                    <i class="fa-regular fa-circle-radiation"></i>
+                                                </div>
+                                                <h4 class="title color-var-one">Basic</h4>
+                                                <p class="subtitle">For large teams & corportaions</p>
+                                                <div class="pricing">
+                                                    <span class="price-text">Free</span>
+                                                </div>
+                                            </div>
+                                            <div class="pricing-body">
+                                                <div class="features-section">
+                                                    <h6>Features</h6>
+                                                    <ul class="list-style--1">
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 7,700
+                                                            3-5 day turnarouord
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 6+
+                                                            Naive development
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 5+
+                                                            Task delivered one-by-one
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-sharp fa-regular fa-minus-circle"></i> AI
+                                                            Blog
+                                                            Updates via dashboard & slack
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-sharp fa-regular fa-minus-circle"></i>
+                                                            Advance
+                                                            Updates via dashboard & slack
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pricing-footer">
+                                            <a class="btn-default btn-border" href="#">Get Started</a>
+                                            <p class="bottom-text">Limited Offer</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-6 col-md-6 col-12 mt--40">
+                                <div class="rainbow-pricing style-aiwave active">
+                                    <div class="pricing-table-inner">
+                                        <div class="pricing-top">
+                                            <div class="pricing-header">
+                                                <div class="icon">
+                                                    <i class="fa-sharp fa-regular fa-flower"></i>
+                                                </div>
+                                                <h4 class="title color-var-two">Premium</h4>
+                                                <p class="subtitle">For large teams & corportaions</p>
+                                                <div class="pricing">
+                                                    <span class="price-text">$499.00</span>
+                                                    <span class="text">/Per Year</span>
+
+                                                </div>
+                                            </div>
+                                            <div class="pricing-body">
+                                                <div class="features-section has-show-more">
+                                                    <h6>Features</h6>
+                                                    <ul class="list-style--1 has-show-more-inner-content">
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 12,700
+                                                            7-9 day turnarouord
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 6+
+                                                            Naive development
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 5+
+                                                            Task delivered one-by-one
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 7,700
+                                                            3-5 day turnarouord
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 6+
+                                                            Naive development
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 5+
+                                                            Task delivered one-by-one
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-sharp fa-regular fa-minus-circle"></i> AI
+                                                            Blog
+                                                            Updates via dashboard & slack
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-sharp fa-regular fa-minus-circle"></i>
+                                                            Advance
+                                                            Updates via dashboard & slack
+                                                        </li>
+                                                    </ul>
+                                                    <div class="rbt-show-more-btn">Show More</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pricing-footer">
+                                            <a class="btn-default color-blacked" href="#">Get Started</a>
+                                            <p class="bottom-text">Limited Offer</p>
+                                        </div>
+                                    </div>
+                                    <div class="feature-badge">Best Offer</div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-6 col-md-6 col-12 mt--40">
+                                <div class="rainbow-pricing style-aiwave">
+                                    <div class="pricing-table-inner">
+                                        <div class="pricing-top">
+                                            <div class="pricing-header">
+                                                <div class="icon">
+                                                    <i class="fa-sharp fa-regular fa-waveform-lines"></i>
+                                                </div>
+                                                <h4 class="title color-var-three">Enterprise</h4>
+                                                <p class="subtitle">For large teams & corportaions</p>
+                                                <div class="pricing">
+                                                    <span class="price-text">$599.00</span>
+                                                    <span class="text">/Per Year</span>
+                                                </div>
+                                            </div>
+                                            <div class="pricing-body">
+                                                <div class="features-section has-show-more">
+                                                    <h6>Features</h6>
+                                                    <ul class="list-style--1 has-show-more-inner-content">
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 15,700
+                                                            15-30 day turnarouord
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 6+
+                                                            Naive development
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 5+
+                                                            Task delivered one-by-one
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 7,700
+                                                            3-5 day turnarouord
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 6+
+                                                            Naive development
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-regular fa-circle-check"></i> 5+
+                                                            Task delivered one-by-one
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-sharp fa-regular fa-minus-circle"></i> AI
+                                                            Blog
+                                                            Updates via dashboard & slack
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa-sharp fa-regular fa-minus-circle"></i>
+                                                            Advance
+                                                            Updates via dashboard & slack
+                                                        </li>
+                                                    </ul>
+                                                    <div class="rbt-show-more-btn">Show More</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pricing-footer">
+                                            <a class="btn-default btn-border" href="#">Get Started</a>
+                                            <p class="bottom-text">Limited Offer</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Service Area -->
+        <div class="aiwave-service-area rainbow-section-gap">
+            <div class="container">
+                <div class="row row--15 service-wrapper">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12 sal-animate" data-sal="slide-up" data-sal-duration="700">
+                        <div class="service service__style--1 aiwave-style text-center">
+                            <div class="icon">
+                                <img src="assets/images/service/service-icon-02.png" alt="Servece Image">
+                            </div>
+                            <div class="content">
+                                <h4 class="title w-600">100% No-Risk, Money Back Guarantee!</h4>
+                                <p class="description b1 mb--0">Refunds will be issued within period of 14 days from
+                                    the
+                                    purchase date</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12 sal-animate" data-sal="slide-up" data-sal-duration="700" data-sal-delay="100">
+                        <div class="service service__style--1 aiwave-style text-center">
+                            <div class="icon">
+                                <img src="assets/images/service/service-icon-02.png" alt="Servece Image">
+                            </div>
+                            <div class="content">
+                                <h4 class="title w-600">Built for Scale & Speed</h4>
+                                <p class="description b1 mb--0">Empower your business with automated, real-time, and enhanced AI data scraping solutions.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12 sal-animate" data-sal="slide-up" data-sal-duration="700" data-sal-delay="200">
+                        <div class="service service__style--1 aiwave-style text-center">
+                            <div class="icon">
+                                <img src="assets/images/service/service-icon-02.png" alt="Servece Image">
+                            </div>
+                            <div class="content">
+                                <h4 class="title w-600">Not sure yet, try the free pilot run</h4>
+                                <p class="description b1 mb--0">You will receive a sample file with data tailored to your requirements, completely free of charge.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Start Testimonial Area  -->
+        <!-- <div class="rainbow-testimonial-area rainbow-section-gap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title text-left" data-sal="slide-up" data-sal-duration="400" data-sal-delay="150">
+                            <h4 class="subtitle">
+                                <span class="theme-gradient">Assisting individuals</span>
+                            </h4>
+                            <h2 class="title mb--60">
+                                The opinions of the community
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="service-wrapper rainbow-service-slider-actvation slick-grid-15 rainbow-slick-dot rainbow-gradient-arrows">
+                            <div class="slide-single-layout">
+                                <div class="rainbow-box-card active card-style-default testimonial-style-defalt has-bg-shaped">
+                                    <div class="inner">
+                                        <div class="rating">
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                        </div>
+                                        <div class="content">
+                                            <p class="description">Rainbow-Themes has become such an integral part
+                                                of
+                                                our work! By putting our</p>
+                                            <div class="bottom-content">
+                                                <div class="meta-info-section">
+                                                    <p class="title-text">Guy Hawkins</p>
+                                                    <p class="desc">Nursing Assistant</p>
+                                                    <div class="desc-img">
+                                                        <img src="assets/images/brand/brand-t.png" alt="Brand Image">
+                                                    </div>
+                                                </div>
+                                                <div class="meta-img-section">
+                                                    <a class="btn-default rounded-player style-two xs-size popup-video" href="https://www.youtube.com/watch?v=ikEdN260zRg">
+                                                        <span><i class="fa-duotone fa-play"></i></span>
+                                                    </a>
+                                                    <a class="image" href="#">
+                                                        <img src="assets/images/team/team-02sm.jpg" alt="">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-shape">
+                                        <img src="assets/images/service/bg-testimonial.png" alt="" class="bg shape-dark">
+                                        <img src="assets/images/service/bg-testimonial-hover.png" alt="" class="bg-hover shape-dark">
+                                        <img src="assets/images/light/service/bg-testimonial.png" alt="" class="bg shape-light">
+                                        <img src="assets/images/light/service/bg-testimonial-hover.png" alt="" class="bg-hover shape-light">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide-single-layout">
+                                <div class="rainbow-box-card card-style-default testimonial-style-defalt has-bg-shaped">
+                                    <div class="inner">
+                                        <div class="rating">
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                        </div>
+                                        <div class="content">
+                                            <p class="description">Rainbow-Themes has become such an integral part
+                                                of
+                                                our work! By putting our</p>
+                                            <div class="bottom-content">
+                                                <div class="meta-info-section">
+                                                    <p class="title-text">Guy Hawkins</p>
+                                                    <p class="desc">Nursing Assistant</p>
+                                                    <div class="desc-img">
+                                                        <img src="assets/images/brand/brand-t.png" alt="Brand Image">
+                                                    </div>
+                                                </div>
+                                                <div class="meta-img-section">
+                                                    <a class="btn-default rounded-player style-two xs-size popup-video" href="https://www.youtube.com/watch?v=ikEdN260zRg">
+                                                        <span><i class="fa-duotone fa-play"></i></span>
+                                                    </a>
+                                                    <a class="image" href="#">
+                                                        <img src="assets/images/team/team-02sm.jpg" alt="">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-shape">
+                                        <img src="assets/images/service/bg-testimonial.png" alt="" class="bg shape-dark">
+                                        <img src="assets/images/service/bg-testimonial-hover.png" alt="" class="bg-hover shape-dark">
+                                        <img src="assets/images/light/service/bg-testimonial.png" alt="" class="bg shape-light">
+                                        <img src="assets/images/light/service/bg-testimonial-hover.png" alt="" class="bg-hover shape-light">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide-single-layout">
+                                <div class="rainbow-box-card card-style-default testimonial-style-defalt has-bg-shaped">
+                                    <div class="inner">
+                                        <div class="rating">
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                        </div>
+                                        <div class="content">
+                                            <p class="description">Rainbow-Themes has become such an integral part
+                                                of
+                                                our work! By putting our</p>
+                                            <div class="bottom-content">
+                                                <div class="meta-info-section">
+                                                    <p class="title-text">Guy Hawkins</p>
+                                                    <p class="desc">Nursing Assistant</p>
+                                                    <div class="desc-img">
+                                                        <img src="assets/images/brand/brand-t.png" alt="Brand Image">
+                                                    </div>
+                                                </div>
+                                                <div class="meta-img-section">
+                                                    <a class="btn-default rounded-player style-two xs-size small-size popup-video" href="https://www.youtube.com/watch?v=ikEdN260zRg">
+                                                        <span><i class="fa-duotone fa-play"></i></span>
+                                                    </a>
+                                                    <a class="image" href="#">
+                                                        <img src="assets/images/team/team-02sm.jpg" alt="">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-shape">
+                                        <img src="assets/images/service/bg-testimonial.png" alt="" class="bg shape-dark">
+                                        <img src="assets/images/service/bg-testimonial-hover.png" alt="" class="bg-hover shape-dark">
+                                        <img src="assets/images/light/service/bg-testimonial.png" alt="" class="bg shape-light">
+                                        <img src="assets/images/light/service/bg-testimonial-hover.png" alt="" class="bg-hover shape-light">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide-single-layout">
+                                <div class="rainbow-box-card active card-style-default testimonial-style-defalt has-bg-shaped">
+                                    <div class="inner">
+                                        <div class="rating">
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                        </div>
+                                        <div class="content">
+                                            <p class="description">Rainbow-Themes has become such an integral part
+                                                of
+                                                our work! By putting our</p>
+                                            <div class="bottom-content">
+                                                <div class="meta-info-section">
+                                                    <p class="title-text">Guy Hawkins</p>
+                                                    <p class="desc">Nursing Assistant</p>
+                                                    <div class="desc-img">
+                                                        <img src="assets/images/brand/brand-t.png" alt="Brand Image">
+                                                    </div>
+                                                </div>
+                                                <div class="meta-img-section">
+                                                    <a class="btn-default rounded-player style-two xs-size popup-video" href="https://www.youtube.com/watch?v=ikEdN260zRg">
+                                                        <span><i class="fa-duotone fa-play"></i></span>
+                                                    </a>
+                                                    <a class="image" href="#">
+                                                        <img src="assets/images/team/team-02sm.jpg" alt="">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-shape">
+                                        <img src="assets/images/service/bg-testimonial.png" alt="" class="bg shape-dark">
+                                        <img src="assets/images/service/bg-testimonial-hover.png" alt="" class="bg-hover shape-dark">
+                                        <img src="assets/images/light/service/bg-testimonial.png" alt="" class="bg shape-light">
+                                        <img src="assets/images/light/service/bg-testimonial-hover.png" alt="" class="bg-hover shape-light">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide-single-layout">
+                                <div class="rainbow-box-card card-style-default testimonial-style-defalt has-bg-shaped">
+                                    <div class="inner">
+                                        <div class="rating">
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                        </div>
+                                        <div class="content">
+                                            <p class="description">Rainbow-Themes has become such an integral part
+                                                of
+                                                our work! By putting our</p>
+                                            <div class="bottom-content">
+                                                <div class="meta-info-section">
+                                                    <p class="title-text">Guy Hawkins</p>
+                                                    <p class="desc">Nursing Assistant</p>
+                                                    <div class="desc-img">
+                                                        <img src="assets/images/brand/brand-t.png" alt="Brand Image">
+                                                    </div>
+                                                </div>
+                                                <div class="meta-img-section">
+                                                    <a class="btn-default rounded-player style-two xs-size popup-video" href="https://www.youtube.com/watch?v=ikEdN260zRg">
+                                                        <span><i class="fa-duotone fa-play"></i></span>
+                                                    </a>
+                                                    <a class="image" href="#">
+                                                        <img src="assets/images/team/team-02sm.jpg" alt="">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-shape">
+                                        <img src="assets/images/service/bg-testimonial.png" alt="" class="bg shape-dark">
+                                        <img src="assets/images/service/bg-testimonial-hover.png" alt="" class="bg-hover shape-dark">
+                                        <img src="assets/images/light/service/bg-testimonial.png" alt="" class="bg shape-light">
+                                        <img src="assets/images/light/service/bg-testimonial-hover.png" alt="" class="bg-hover shape-light">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide-single-layout">
+                                <div class="rainbow-box-card card-style-default testimonial-style-defalt has-bg-shaped">
+                                    <div class="inner">
+                                        <div class="rating">
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                            <a href="#rating">
+                                                <i class="fa-sharp fa-solid fa-star"></i>
+                                            </a>
+                                        </div>
+                                        <div class="content">
+                                            <p class="description">Rainbow-Themes has become such an integral part
+                                                of
+                                                our work! By putting our</p>
+                                            <div class="bottom-content">
+                                                <div class="meta-info-section">
+                                                    <p class="title-text">Guy Hawkins</p>
+                                                    <p class="desc">Nursing Assistant</p>
+                                                    <div class="desc-img">
+                                                        <img src="assets/images/brand/brand-t.png" alt="Brand Image">
+                                                    </div>
+                                                </div>
+                                                <div class="meta-img-section">
+                                                    <a class="btn-default rounded-player style-two xs-size small-size popup-video" href="https://www.youtube.com/watch?v=ikEdN260zRg">
+                                                        <span><i class="fa-duotone fa-play"></i></span>
+                                                    </a>
+                                                    <a class="image" href="#">
+                                                        <img src="assets/images/team/team-02sm.jpg" alt="">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-shape">
+                                        <img src="assets/images/service/bg-testimonial.png" alt="" class="bg shape-dark">
+                                        <img src="assets/images/service/bg-testimonial-hover.png" alt="" class="bg-hover shape-dark">
+                                        <img src="assets/images/light/service/bg-testimonial.png" alt="" class="bg shape-light">
+                                        <img src="assets/images/light/service/bg-testimonial-hover.png" alt="" class="bg-hover shape-light">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- End Testimonial Area  -->
+
+        <!-- Start Brand Area -->
+        <!-- <div class="rainbow-brand-area rainbow-section-gap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title rating-title text-center sal-animate" data-sal="slide-up" data-sal-duration="700" data-sal-delay="100">
+                            <div class="rating">
+                                <a href="#rating">
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                </a>
+                                <a href="#rating">
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                </a>
+                                <a href="#rating">
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                </a>
+                                <a href="#rating">
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                </a>
+                                <a href="#rating">
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                </a>
+                            </div>
+                            <p class="subtitle mb--0">Based on 20,000+ reviews on</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 mt--10">
+                        <ul class="brand-list brand-style-2">
+                            <li><a href="#"><img src="assets/images/brand/brand-01.png" alt="Brand Image"></a></li>
+                            <li><a href="#"><img src="assets/images/brand/brand-02.png" alt="Brand Image"></a></li>
+                            <li><a href="#"><img src="assets/images/brand/brand-03.png" alt="Brand Image"></a></li>
+                            <li><a href="#"><img src="assets/images/brand/brand-04.png" alt="Brand Image"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-shape-left">
+                <img src="assets/images/bg/bg-shape-two.png" alt="Bg shape">
+            </div>
+        </div> -->
+
+        <!-- Start CTA Area -->
+        <div class="rainbow-cta-area rainbow-section-gap rainbow-section-gapBottom-big">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="aiwave-cta">
+                            <div class="inner">
+                                <div class="content-left">
+                                    <div class="section-title text-left" data-sal="slide-up" data-sal-duration="400" data-sal-delay="150">
+                                        <h4 class="subtitle">
+                                            <span class="theme-gradient">Android/ios Extraction</span>
+                                        </h4>
+                                        <h2 class="title w-600 mb--20">
+                                            Mobile Application Scraping
+                                        </h2>
+                                        <p class="description b1">
+                                            Scrape the real-time data from any mobile application<br>
+                                            will be delivered as API and Data.
+                                        </p>
+                                    </div>
+                                    <div class="app-store-btn">
+                                        <a class="btn-default btn-large color-blacked" href="contact">Try It Now <i
+                                    class="fa-sharp fa-light fa-arrow-right ml--5"></i></a>
+                                    </div>
+                                </div>
+                                <div class="content-right">
+                                    <div class="img-right">
+                                        <img src="assets/images/cta-img/view-img.png" alt="Mobile View">
+                                    </div>
+                                </div>
+                                <div class="bg-shape-one">
+                                    <img src="assets/images/cta-img/bg-shape.png" alt="Bg shape">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Start Footer Area  -->
+        <footer class="rainbow-footer footer-style-default footer-style-3 position-relative">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row justify-content-between">
+                        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                            <div class="rainbow-footer-widget">
+                                <div class="logo">
+                                    <a href="/" class="logo-link justify-content-start">
+                            <span class="logo-text">CoderAim</span>
+                                </a>
+                                </div>
+                                <p class="b1 desc-text">It has long been known that a reader's <br> attention will be diverted
+                            from </p>
+                                <h6 class="subtitle">Join a Newsletter</h6>
+                                <form class="newsletter-form" action="#">
+                                    <div class="form-group">
+                                        <input type="email" placeholder="Enter Your Email Here">
+                                        <button class="btn-default bg-solid-primary" type="submit"><i
+                                        class="fa-sharp fa-regular fa-arrow-right"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                            <div class="rainbow-footer-widget">
+                                <div class="widget-menu-bottom">
+                                    <h4 class="title">Quick Links</h4>
+                                    <div class="inner">
+                                                                                <ul class="footer-link link-hover">
+                                            <li><a href="/" class="active">Home</a></li>
+                                            <li><a href="service">Services</a></li>
+                                            <li><a href="about">About</a></li>
+                                            <li><a href="contact">Contact</a></li>
+                                            <li><a href="request-sample-data">Get Free Sample Data</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                            <div class="rainbow-footer-widget">
+                                <div class="widget-menu-top">
+                                    <h4 class="title">Services</h4>
+                                    <div class="inner">
+                                        <ul class="footer-link link-hover">
+                                            <li><a href="service">Custom Web Data Extraction</a></li>
+                                            <li><a href="service">Real-Time Data Feeds</a></li>
+                                            <li><a href="service">AI-Powered Data Parsing</a></li>
+                                            <li><a href="service">API Integration</a></li>
+                                            <li><a href="service">Automation</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="rainbow-footer-widget">
+                                <div class="widget-menu-top">
+                                    <h4 class="title">Contact</h4>
+                                    <div class="inner">
+                                        <ul class="footer-link contact-link">
+                                            <li><i class="contact-icon fa-regular fa-location-dot"></i><a href="https://maps.app.goo.gl/sZ3WfCHbDfMWrXnKA" target="_blank">Ahmedabad, India.</a></li>
+                                            <li><i class="contact-icon fa-sharp fa-regular fa-envelope"></i><a href="mailto:info@coderaim.com">info@coderaim.com</a></li>
+                                            <li><i class="contact-icon fa-regular fa-phone"></i><a href="tel:+919099440844">+91 90994 40844</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer Area  -->
+        <!-- Start Copy Right Area  -->
+        <div class="copyright-area copyright-style-one">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-8 col-sm-12 col-12">
+                        <div class="copyright-left">
+                            <ul class="ft-menu link-hover">
+                                <li>
+                                    <a href="#">Privacy Policy</a>
+                                </li>
+                                <li>
+                                    <a href="#">Terms And Condition</a>
+                                </li>
+                                <li>
+                                    <a href="contact">Contact Us</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-sm-12 col-12">
+                        <div class="copyright-right text-center text-lg-end">
+                            <p class="copyright-text">Copyright © 2025 <a href="https://coderaim.com/" class="btn-read-more"><span>CoderAim.</span></a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Copy Right Area  -->
+        <div class="rbt-progress-parent">
+            <svg class="rbt-back-circle svg-inner" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+        </div>
+    </main>
+    <!-- All Scripts  -->
+
+    <!-- JS
+    ============================================ -->
+    <div class="rbt-progress-parent">
+        <svg class="rbt-back-circle svg-inner" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </div>
+
+    <!-- JS
+============================================ -->
+    <script src="assets/js/vendor/modernizr.min.js"></script>
+    <script src="assets/js/vendor/jquery.min.js"></script>
+    <script src="assets/js/vendor/bootstrap.min.js"></script>
+    <script src="assets/js/vendor/waypoint.min.js"></script>
+    <script src="assets/js/vendor/wow.min.js"></script>
+    <script src="assets/js/vendor/counterup.min.js"></script>
+    <script src="assets/js/vendor/sal.min.js"></script>
+    <script src="assets/js/vendor/slick.min.js"></script>
+    <script src="assets/js/vendor/text-type.js"></script>
+    <script src="assets/js/vendor/prism.js"></script>
+    <script src="assets/js/vendor/bootstrap-select.min.js"></script>
+    <script src="assets/js/vendor/backto-top.js"></script>
+    <!-- Light Mode Switcher -->
+    <script src="assets/js/vendor/js.cookie.js"></script>
+    <script src="assets/js/vendor/jquery.style.swicher.js"></script>
+
+    <script src="assets/js/vendor/jquery-one-page-nav.js"></script>
+    <!-- Main JS -->
+    <script src="assets/js/main.js"></script>
+
+</body>
+</html>

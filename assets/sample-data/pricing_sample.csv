@@ -1,0 +1,11 @@
+product_id,product_name,retailer,price,currency,discount_percent,previous_price,availability,captured_at
+PR-001,4K Ultra HD Smart TV 55-inch,ScreenMart,449.00,USD,10,499.00,In Stock,2026-08-01T09:00:00Z
+PR-001,4K Ultra HD Smart TV 55-inch,ElectroBay,469.00,USD,6,499.00,In Stock,2026-08-01T09:05:00Z
+PR-002,Robot Vacuum Cleaner,HomeTech Direct,239.99,USD,20,299.99,In Stock,2026-08-01T09:00:00Z
+PR-002,Robot Vacuum Cleaner,ClickCart,259.99,USD,13,299.99,Low Stock,2026-08-01T09:06:00Z
+PR-003,Espresso Machine Compact,BrewBase,159.00,USD,0,159.00,In Stock,2026-08-01T09:00:00Z
+PR-003,Espresso Machine Compact,KitchenDeals,149.00,USD,6,159.00,In Stock,2026-08-01T09:07:00Z
+PR-004,Ergonomic Office Chair,OfficeHub,189.50,USD,15,223.00,In Stock,2026-08-01T09:00:00Z
+PR-004,Ergonomic Office Chair,WorkSpace Direct,199.00,USD,11,223.00,In Stock,2026-08-01T09:08:00Z
+PR-005,Noise-Cancelling Over-Ear Headphones,SoundBox,129.00,USD,14,149.00,Out of Stock,2026-08-01T09:00:00Z
+PR-005,Noise-Cancelling Over-Ear Headphones,AudioNest,134.99,USD,10,149.00,In Stock,2026-08-01T09:09:00Z

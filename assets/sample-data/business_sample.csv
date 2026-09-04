@@ -1,0 +1,9 @@
+business_id,business_name,industry,city,country,employee_count,website,phone,rating,review_count
+B-6001,Northwind Analytics,Data & Analytics,Austin,USA,85,https://example-northwind.com,+1-512-555-0142,4.6,58
+B-6002,Bluepeak Software Pvt Ltd,Information Technology,Bengaluru,India,220,https://example-bluepeak.com,+91-80-5550-1234,4.4,132
+B-6003,GreenLiving Co.,Retail,Portland,USA,32,https://example-greenliving.com,+1-503-555-0198,4.8,214
+B-6004,Trellis Consulting Group,Professional Services,London,UK,60,https://example-trellis.com,+44-20-5550-7890,4.3,76
+B-6005,CloudForge Systems,Cloud Infrastructure,Toronto,Canada,140,https://example-cloudforge.com,+1-416-555-0176,4.5,98
+B-6006,PixelCraft Studio,Design & Creative,Ahmedabad,India,18,https://example-pixelcraft.com,+91-79-5550-4455,4.9,41
+B-6007,BrewBase Appliances,Manufacturing,Chicago,USA,410,https://example-brewbase.com,+1-312-555-0123,4.1,305
+B-6008,Marketly,Marketing & Advertising,New York,USA,54,https://example-marketly.com,+1-212-555-0199,4.2,87

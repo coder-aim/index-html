@@ -1,0 +1,11 @@
+product_id,product_name,category,brand,price,currency,rating,review_count,stock_status,seller_name,product_url
+E10231,Wireless Noise-Cancelling Headphones,Electronics,SoundCore,89.99,USD,4.5,1284,In Stock,TechHub Store,https://example-shop.com/products/e10231
+E10287,Stainless Steel Water Bottle 1L,Home & Kitchen,HydroLife,18.50,USD,4.7,932,In Stock,GreenLiving Co.,https://example-shop.com/products/e10287
+E10342,Organic Cotton T-Shirt,Apparel,PureWear,24.00,USD,4.3,415,Low Stock,Urban Basics,https://example-shop.com/products/e10342
+E10399,Smart Fitness Band,Electronics,FitTrack,49.99,USD,4.2,2210,In Stock,ActiveGear,https://example-shop.com/products/e10399
+E10456,Ceramic Non-Stick Cookware Set,Home & Kitchen,ChefPro,129.00,USD,4.6,678,In Stock,Kitchen World,https://example-shop.com/products/e10456
+E10502,Leather Laptop Backpack,Accessories,UrbanCarry,64.99,USD,4.4,543,In Stock,TravelGear Co.,https://example-shop.com/products/e10502
+E10567,Bluetooth Portable Speaker,Electronics,SoundCore,39.99,USD,4.1,1897,Out of Stock,TechHub Store,https://example-shop.com/products/e10567
+E10611,Yoga Mat with Carry Strap,Sports & Outdoors,FlexFit,22.50,USD,4.8,761,In Stock,ActiveGear,https://example-shop.com/products/e10611
+E10678,Aromatherapy Essential Oil Diffuser,Home & Kitchen,CalmHome,34.00,USD,4.5,389,In Stock,GreenLiving Co.,https://example-shop.com/products/e10678
+E10734,Kids Educational Building Blocks,Toys & Games,BrightMinds,29.99,USD,4.9,1045,In Stock,FunTime Toys,https://example-shop.com/products/e10734

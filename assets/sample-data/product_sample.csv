@@ -1,0 +1,9 @@
+sku,product_name,category,description,attributes,weight_kg,dimensions_cm,image_url,manufacturer,upc
+P-2001,Aluminum Water Bottle 750ml,Drinkware,Double-wall insulated bottle keeps drinks cold for 24 hours,"color:Matte Black;capacity:750ml",0.35,"7x7x25",https://example-cdn.com/img/p2001.jpg,HydroLife,0123456789012
+P-2002,Wireless Ergonomic Mouse,Computer Accessories,2.4GHz wireless mouse with adjustable DPI settings,"color:Graphite;dpi:800-2400",0.12,"11x6x4",https://example-cdn.com/img/p2002.jpg,ClickTech,0123456789013
+P-2003,Memory Foam Pillow,Home & Bedding,Contour pillow designed for neck and shoulder support,"size:Standard;material:Memory Foam",1.10,"60x40x12",https://example-cdn.com/img/p2003.jpg,SleepWell,0123456789014
+P-2004,Stainless Steel Chef Knife 8-inch,Kitchenware,Forged high-carbon steel blade with ergonomic handle,"length:8in;material:Stainless Steel",0.28,"33x4x2",https://example-cdn.com/img/p2004.jpg,ChefPro,0123456789015
+P-2005,Portable Camping Lantern,Outdoor Gear,Rechargeable LED lantern with 3 brightness modes,"battery:2600mAh;waterproof:Yes",0.42,"12x12x18",https://example-cdn.com/img/p2005.jpg,TrailLight,0123456789016
+P-2006,Adjustable Laptop Stand,Office Supplies,Foldable aluminum stand compatible with 10-17 inch laptops,"material:Aluminum;color:Silver",0.85,"26x24x5",https://example-cdn.com/img/p2006.jpg,DeskPro,0123456789017
+P-2007,Kids Water Bottle with Straw,Drinkware,BPA-free bottle designed for school-age children,"color:Blue;capacity:500ml",0.20,"6x6x20",https://example-cdn.com/img/p2007.jpg,HydroLife,0123456789018
+P-2008,Ceramic Coffee Mug Set of 4,Kitchenware,"Set of 4 matte-finish ceramic mugs, dishwasher safe","capacity:350ml;set:4",1.60,"30x30x11",https://example-cdn.com/img/p2008.jpg,HomeStyle,0123456789019

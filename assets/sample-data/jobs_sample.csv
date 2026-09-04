@@ -1,0 +1,10 @@
+job_id,job_title,company_name,location,employment_type,salary_min,salary_max,currency,experience_level,posted_date,job_url
+J-4001,Data Engineer,Northwind Analytics,Remote,Full-time,90000,120000,USD,Mid,2026-08-10,https://example-jobs.com/job/j-4001
+J-4002,Frontend Developer (React),Bluepeak Software,Bengaluru India,Full-time,1200000,1800000,INR,Mid,2026-08-11,https://example-jobs.com/job/j-4002
+J-4003,Product Marketing Manager,Craterly Inc.,New York NY,Full-time,95000,130000,USD,Senior,2026-08-12,https://example-jobs.com/job/j-4003
+J-4004,Customer Success Associate,HelpDesk Pro,Remote,Full-time,45000,58000,USD,Entry,2026-08-12,https://example-jobs.com/job/j-4004
+J-4005,DevOps Engineer,CloudForge Systems,Austin TX,Full-time,110000,145000,USD,Senior,2026-08-13,https://example-jobs.com/job/j-4005
+J-4006,UI/UX Designer,PixelCraft Studio,Ahmedabad India,Full-time,600000,950000,INR,Mid,2026-08-14,https://example-jobs.com/job/j-4006
+J-4007,Business Analyst,Trellis Consulting,London UK,Contract,45000,60000,GBP,Mid,2026-08-15,https://example-jobs.com/job/j-4007
+J-4008,QA Automation Engineer,TestBridge Labs,Remote,Full-time,80000,105000,USD,Mid,2026-08-16,https://example-jobs.com/job/j-4008
+J-4009,Sales Development Representative,Marketly,Chicago IL,Full-time,50000,70000,USD,Entry,2026-08-17,https://example-jobs.com/job/j-4009
