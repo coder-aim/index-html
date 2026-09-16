@@ -1,0 +1,6 @@
+# TODO: placeholder domain — update if this concept deploys at a different
+# subdomain/subpath than https://coderaim.com/zero-maintenance-concept/
+User-agent: *
+Disallow:
+
+Sitemap: https://coderaim.com/zero-maintenance-concept/sitemap.xml

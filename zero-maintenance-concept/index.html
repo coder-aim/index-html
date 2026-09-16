@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<!-- lang="en" set here because this file is served as a standalone document.
+     If a future build/template step ever assembles this content into another
+     wrapper document, that wrapper's own <html> tag must also carry lang="en". -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Zero-Maintenance Data Pipelines | CoderAIM Concept</title>
+
+<meta name="description" content="CoderAIM's in-house engineers build, run, and repair your data pipeline end to end — extraction, AI parsing, monitoring, and delivery. Get a free sample dataset.">
+<meta name="author" content="CoderAIM">
+
+<meta property="og:title" content="Zero-Maintenance Data Pipelines | CoderAIM">
+<meta property="og:description" content="Your data pipeline. Fully managed. Zero maintenance. In-house engineers handling extraction, parsing, monitoring, and delivery — end to end.">
+<meta property="og:image" content="https://coderaim.com/assets/images/logo/logo.png">
+<!-- TODO: update once a live/staging URL for this concept is finalized -->
+<meta property="og:url" content="https://coderaim.com/zero-maintenance-concept/index.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CoderAIM">
+
+<!-- TODO: confirm final deploy URL -->
+<link rel="canonical" href="https://coderaim.com/zero-maintenance-concept/index.html">
+
+<!-- Favicon (reuses the real site's favicon — this concept doesn't have its own) -->
+<link rel="icon" href="../favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CoderAIM",
+  "url": "https://coderaim.com",
+  "email": "info@coderaim.com",
+  "telephone": "+91-90994-40844",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Ahmedabad",
+    "addressCountry": "IN"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is web scraping legal for my business use case?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, when done ethically and in compliance with public data access and applicable regulations. We follow responsible scraping practices and can discuss your specific compliance needs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What format will I receive the data in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We deliver data in your preferred format — JSON, CSV, Excel, or directly via API — tailored to how your team works."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a typical project take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Turnaround depends on scope and complexity, but most projects are delivered within days, not weeks, thanks to our automated pipelines."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my data kept confidential?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely. We sign NDAs on request and follow strict data-handling practices to keep your information secure."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer one-time or recurring data delivery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both. We support one-time extractions as well as scheduled, real-time, or recurring data feeds based on your needs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you scrape data from mobile apps, not just websites?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, we support real-time data extraction from mobile applications, delivered via API or structured data files."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I'm not sure what I need yet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start with our free pilot run — we'll deliver a sample dataset tailored to your requirements so you can evaluate before committing."
+      }
+    }
+  ]
+}
+</script>
+<style>
+  /* Fixed brand identity — CoderAIM's marketing palette does not invert with
+     visitor OS theme, the same way Stripe/Vercel-style infra sites don't. */
+  :root{
+    --ink:#0e0c17;
+    --ink-2:#171325;
+    --ink-3:#211a34;
+    --ink-line:rgba(255,255,255,0.10);
+    --on-ink:#efeafa;
+    --on-ink-dim:#a79bc4;
+
+    --paper:#f6f5fa;
+    --paper-card:#ffffff;
+    --paper-line:#e4e0ee;
+    --on-paper:#15121f;
+    --on-paper-dim:#6a6178;
+
+    /* Real CoderAIM brand gradient, sampled from ../assets/images/logo/logo.png */
+    --brand-violet:#7c57ea;
+    --brand-lavender:#ce9eff;
+    --brand-onlight:#6b3fd6;
+
+    --signal:#b98cff;
+    --signal-ink:#2a1454;
+    --action:#8b5fee;
+    --action-ink:#ffffff;
+    --danger:#ff6f61;
+
+    --shadow-lg: 0 24px 60px -24px rgba(4,8,18,0.45);
+    --shadow-sm: 0 2px 10px rgba(4,8,18,0.06);
+    --radius:14px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--on-paper);
+    font-family:'Source Sans 3', system-ui, sans-serif;
+    font-size:16.5px;
+    line-height:1.65;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3,h4{
+    font-family:'Archivo', system-ui, sans-serif;
+    text-wrap:balance;
+    letter-spacing:-0.015em;
+    margin:0;
+  }
+  .mono{font-family:'IBM Plex Mono', ui-monospace, monospace;}
+  .container{max-width:1120px;margin:0 auto;padding:0 28px;}
+  section{position:relative;}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;letter-spacing:0.14em;text-transform:uppercase;
+    font-weight:600;margin-bottom:18px;
+  }
+  .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--signal);flex:0 0 auto;box-shadow:0 0 0 3px rgba(185,140,255,0.18);}
+  .on-ink .eyebrow{color:var(--signal);}
+  .on-paper .eyebrow{color:var(--brand-onlight);}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:15.5px;
+    padding:14px 24px;border-radius:9px;border:1px solid transparent;
+    cursor:pointer;white-space:nowrap;transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--action);color:var(--action-ink);box-shadow:0 10px 26px -10px rgba(139,95,238,0.55);}
+  .btn-primary:hover{box-shadow:0 14px 30px -10px rgba(139,95,238,0.7);}
+  .btn-ghost-dark{background:transparent;color:var(--on-ink);border-color:var(--ink-line);}
+  .btn-ghost-dark:hover{border-color:var(--signal);color:var(--signal);}
+  .btn-ghost-light{background:transparent;color:var(--on-paper);border-color:var(--paper-line);}
+  .btn-ghost-light:hover{border-color:var(--brand-onlight);color:var(--brand-onlight);}
+  .btn-sm{padding:10px 18px;font-size:14px;}
+
+  .logo-text {
+    font-family: "Paytone One", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 33px;
+    margin: 0; /* Remove default margin from h3 */
+    white-space: nowrap;
+  }
+  @media only screen and (max-width: 479px) {
+    .logo-text {
+      font-size: 24px;
+    }
+  }
+  /* ---------- NAV ---------- */
+  nav.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(14,12,23,0.86);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--ink-line);
+  }
+  nav.site .row{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;max-width:1120px;margin:0 auto;}
+  .brand{display:inline-flex;align-items:center;gap:10px;font-family:'Archivo',sans-serif;font-weight:800;font-size:19px;color:var(--on-ink);letter-spacing:-0.01em;}
+  .brand-mark{width:30px;height:30px;flex:0 0 auto;}
+  .brand-mark.lg{width:36px;height:36px;}
+  .nav-links{display:flex;gap:28px;font-size:14.5px;font-weight:600;color:var(--on-ink-dim);}
+  .nav-links a:hover{color:var(--on-ink);}
+  .nav-cta{display:flex;align-items:center;gap:14px;}
+  .nav-burger{display:none;background:none;border:none;color:var(--on-ink);font-size:20px;cursor:pointer;padding:6px;line-height:0;}
+  .nav-burger svg{width:24px;height:24px;display:block;}
+  @media (max-width:860px){
+    .nav-links{display:none;}
+    .nav-burger{display:block;}
+  }
+
+  /* ---------- mobile menu panel ---------- */
+  .mobile-menu{
+    position:fixed;inset:0;z-index:150;background:rgba(14,12,23,0.6);
+    opacity:0;visibility:hidden;transition:opacity .2s ease;
+  }
+  .mobile-menu.open{opacity:1;visibility:visible;}
+  .mobile-menu-inner{
+    position:absolute;top:0;right:0;height:100%;width:min(320px,86vw);
+    background:var(--ink-2);border-left:1px solid var(--ink-line);
+    padding:22px 24px;display:flex;flex-direction:column;gap:28px;
+    transform:translateX(100%);transition:transform .25s ease;
+  }
+  .mobile-menu.open .mobile-menu-inner{transform:translateX(0);}
+  .mobile-menu-close{align-self:flex-end;background:none;border:none;color:var(--on-ink);font-size:20px;cursor:pointer;padding:6px;line-height:0;}
+  .mobile-menu-close svg{width:22px;height:22px;display:block;}
+  .mobile-menu-links{display:flex;flex-direction:column;gap:22px;font-size:16px;font-weight:600;color:var(--on-ink-dim);}
+  .mobile-menu-links a:hover, .mobile-menu-links a.active{color:var(--on-ink);}
+  body.menu-open{overflow:hidden;}
+
+  /* ---------- HERO ---------- */
+  .hero{background:radial-gradient(120% 140% at 15% 0%, #241a3d 0%, var(--ink) 55%);color:var(--on-ink);overflow:hidden;padding:96px 0 70px;}
+  .hero .container{position:relative;z-index:2;}
+  .hero-flow{position:absolute;inset:0;z-index:1;opacity:0.55;pointer-events:none;}
+  .hero-flow path{fill:none;stroke:var(--signal);stroke-width:1.4;stroke-dasharray:6 10;animation:flow 9s linear infinite;}
+  .hero-flow path:nth-child(2){stroke:var(--brand-lavender);opacity:0.55;animation-duration:12s;animation-direction:reverse;}
+  .hero-flow path:nth-child(3){opacity:0.3;animation-duration:15s;}
+  @keyframes flow{to{stroke-dashoffset:-320;}}
+  @media (prefers-reduced-motion: reduce){ .hero-flow path{animation:none;} }
+
+  .brand-motto{font-family:'IBM Plex Mono',monospace;font-size:13px;font-style:italic;color:var(--on-ink-dim);letter-spacing:0.03em;margin:0 0 14px;}
+  .hero h1{font-size:clamp(38px,6vw,64px);font-weight:900;line-height:1.05;max-width:15ch;}
+  .hero h1 .accent{
+    background:linear-gradient(90deg, var(--brand-violet), var(--brand-lavender));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lede{margin:26px 0 0;font-size:19px;color:var(--on-ink-dim);max-width:56ch;}
+  .hero .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px;}
+  .hero .trust-line{margin-top:26px;display:flex;flex-wrap:wrap;gap:18px;font-size:12.5px;color:var(--on-ink-dim);}
+  .hero .trust-line span{display:flex;align-items:center;gap:7px;}
+  .hero .trust-line span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--signal);}
+
+  .format-ticker{
+    border-top:1px solid var(--ink-line);
+    margin-top:60px;padding-top:22px;
+    display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;
+    color:var(--on-ink-dim);text-transform:uppercase;text-align:center;
+  }
+  .format-ticker b{color:var(--on-ink);font-weight:600;}
+  .format-ticker .dot{color:var(--signal);}
+
+  /* ---------- generic section paddings ---------- */
+  .band{padding:88px 0;}
+  .band.on-ink{background:var(--ink);color:var(--on-ink);}
+  .band.on-ink-2{background:var(--ink-2);color:var(--on-ink);}
+  .band.on-paper{background:var(--paper);color:var(--on-paper);}
+  .band.on-white{background:var(--paper-card);color:var(--on-paper);}
+
+  .head{max-width:640px;margin:0 0 48px;}
+  .head h2{font-size:clamp(26px,3.6vw,38px);font-weight:800;}
+  .head p{margin-top:14px;font-size:16.5px;}
+  .on-ink .head p{color:var(--on-ink-dim);}
+  .on-paper .head p, .on-white .head p{color:var(--on-paper-dim);}
+  .head.center{margin-left:auto;margin-right:auto;text-align:center;}
+
+  /* ---------- problem cards ---------- */
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  @media (max-width:820px){.grid-3{grid-template-columns:1fr;}}
+  .problem-card{
+    background:var(--paper-card);border:1px solid var(--paper-line);border-radius:var(--radius);
+    padding:26px 24px;box-shadow:var(--shadow-sm);
+  }
+  .problem-card .tag{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--danger);letter-spacing:0.08em;text-transform:uppercase;font-weight:600;}
+  .problem-card h4{font-size:18px;margin:10px 0 8px;}
+  .problem-card p{font-size:14.5px;color:var(--on-paper-dim);margin:0;}
+  .problem-note{
+    margin-top:28px;text-align:center;font-size:16px;font-weight:600;color:var(--on-paper);
+    background:var(--paper-card);border:1px dashed var(--paper-line);border-radius:10px;padding:16px 20px;
+  }
+
+  /* ---------- comparison ---------- */
+  .compare-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--ink-line);}
+  table.compare{width:100%;border-collapse:collapse;min-width:680px;background:var(--ink-2);}
+  table.compare th, table.compare td{padding:16px 18px;text-align:left;font-size:14.5px;border-bottom:1px solid var(--ink-line);vertical-align:top;}
+  table.compare thead th{
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:0.06em;
+    color:var(--on-ink-dim);font-weight:600;background:var(--ink);
+  }
+  table.compare thead th.win{color:var(--signal);}
+  table.compare tbody th{color:var(--on-ink-dim);font-weight:600;font-size:14px;white-space:nowrap;}
+  table.compare td{color:var(--on-ink-dim);}
+  table.compare td.win{color:var(--on-ink);font-weight:600;background:rgba(185,140,255,0.07);border-left:2px solid var(--signal);}
+  table.compare tr:last-child td, table.compare tr:last-child th{border-bottom:none;}
+
+  /* ---------- 4 step pipeline ---------- */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-top:20px;}
+  @media (max-width:900px){.steps{grid-template-columns:1fr;gap:28px;}}
+  .step-line{position:absolute;top:26px;left:6%;right:6%;height:2px;background:repeating-linear-gradient(to right, var(--paper-line) 0 8px, transparent 8px 16px);z-index:0;}
+  @media (max-width:900px){.step-line{display:none;}}
+  .step{position:relative;z-index:1;padding:0 16px;}
+  .step .node{
+    width:52px;height:52px;border-radius:50%;background:var(--paper-card);border:2px solid var(--brand-onlight);
+    display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;
+    font-weight:700;color:var(--brand-onlight);font-size:16px;margin-bottom:18px;box-shadow:var(--shadow-sm);
+  }
+  .step h4{font-size:17px;margin-bottom:8px;}
+  .step p{font-size:14.5px;color:var(--on-paper-dim);margin:0;}
+
+  /* ---------- capability cards ---------- */
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  @media (max-width:960px){.grid-4{grid-template-columns:1fr 1fr;}}
+  @media (max-width:560px){.grid-4{grid-template-columns:1fr;}}
+  .cap-card{
+    background:var(--ink-2);border:1px solid var(--ink-line);border-radius:var(--radius);padding:24px 20px;
+  }
+  .cap-card .num{font-family:'IBM Plex Mono',monospace;color:var(--signal);font-size:12px;letter-spacing:0.08em;}
+  .cap-card h4{font-size:16.5px;margin:12px 0 8px;color:var(--on-ink);}
+  .cap-card p{font-size:14px;color:var(--on-ink-dim);margin:0;}
+
+  /* ---------- formats ---------- */
+  .grid-6{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  @media (max-width:760px){.grid-6{grid-template-columns:1fr 1fr;}}
+  @media (max-width:480px){.grid-6{grid-template-columns:1fr;}}
+  .format-card{background:var(--paper-card);border:1px solid var(--paper-line);border-radius:12px;padding:20px;box-shadow:var(--shadow-sm);}
+  .format-card .fmt{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:15px;color:var(--brand-onlight);}
+  .format-card p{font-size:14px;color:var(--on-paper-dim);margin:8px 0 0;}
+
+  /* ---------- industries ---------- */
+  .ind-card{
+    background:var(--paper-card);border:1px solid var(--paper-line);border-radius:var(--radius);
+    padding:26px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;height:100%;
+  }
+  .ind-card .badge{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--brand-onlight);font-weight:700;}
+  .ind-card h4{font-size:19px;margin:10px 0 12px;}
+  .ind-card .row-label{font-size:11.5px;text-transform:uppercase;letter-spacing:0.06em;color:var(--on-paper-dim);font-weight:700;margin-top:14px;}
+  .ind-card p{font-size:14.5px;margin:4px 0 0;color:var(--on-paper);}
+  .ind-card .btn{margin-top:20px;align-self:flex-start;}
+
+  /* ---------- pricing (reuses .ind-card / .grid-3 / .form-benefits) ---------- */
+  .ind-card.featured{position:relative;border-color:var(--brand-onlight);box-shadow:var(--shadow-lg);}
+  .pricing-badge{
+    position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+    background:var(--brand-onlight);color:#fff;font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+    padding:5px 14px;border-radius:50px;white-space:nowrap;
+  }
+
+  /* ---------- trust ---------- */
+  .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:36px;}
+  @media (max-width:860px){.trust-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:480px){.trust-grid{grid-template-columns:1fr;}}
+  .trust-item{
+    background:var(--paper-card);border:1px solid var(--paper-line);border-radius:12px;padding:18px;
+    display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow-sm);
+  }
+  .trust-item .ic{color:var(--brand-onlight);font-size:18px;}
+  .trust-item span{font-size:14px;font-weight:600;}
+  .compliance-panel{
+    background:var(--ink);color:var(--on-ink);border-radius:var(--radius);padding:30px 32px;
+    display:grid;grid-template-columns:1.3fr 0.9fr;gap:32px;align-items:center;
+  }
+  @media (max-width:820px){.compliance-panel{grid-template-columns:1fr;}}
+  .compliance-panel p{color:var(--on-ink-dim);font-size:15px;margin:12px 0 0;}
+  .compliance-panel h4{font-size:19px;}
+
+  /* ---------- CTA bands ---------- */
+  .cta-band{
+    background:linear-gradient(120deg, var(--brand-lavender), #b98cff);color:#2a1454;
+    border-radius:var(--radius);padding:34px 36px;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  }
+  .cta-band h3{font-size:22px;font-weight:800;}
+  .cta-band p{margin:6px 0 0;font-size:14.5px;color:#4a3372;}
+  .cta-band .btn-primary{background:var(--ink);color:var(--on-ink);box-shadow:none;}
+
+  /* ---------- form ---------- */
+  .form-wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;}
+  @media (max-width:900px){.form-wrap{grid-template-columns:1fr;}}
+  .form-benefits{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:12px;}
+  .form-benefits li{display:flex;gap:10px;font-size:15px;color:var(--on-paper);}
+  .form-benefits li::before{content:"✓";color:var(--brand-onlight);font-weight:700;}
+  .form-card{background:var(--paper-card);border:1px solid var(--paper-line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-lg);}
+  .f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+  @media (max-width:520px){.f-row{grid-template-columns:1fr;}}
+  .f-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+  .f-group label{font-size:12.5px;font-weight:700;color:var(--on-paper);}
+  .f-group label .req{color:var(--danger);}
+  .f-group input, .f-group select, .f-group textarea{
+    border:1px solid var(--paper-line);border-radius:8px;padding:11px 12px;font-size:14.5px;
+    font-family:'Source Sans 3',sans-serif;background:var(--paper);color:var(--on-paper);
+  }
+  .f-group input:focus, .f-group select:focus, .f-group textarea:focus{outline:2px solid var(--brand-onlight);outline-offset:1px;}
+  .f-hint{font-size:12.5px;color:#a56b0d;background:#fdf2df;border:1px solid #f2debb;border-radius:6px;padding:8px 10px;display:none;margin-bottom:14px;margin-top:-6px;}
+  .f-hint.show{display:block;}
+  .form-note{font-size:12.5px;color:var(--on-paper-dim);margin-top:14px;text-align:center;}
+
+  .f-group.has-error input, .f-group.has-error select, .f-group.has-error textarea{
+    border-color:var(--danger);
+  }
+  .f-group .f-error-text{display:none;font-size:12px;color:var(--danger);margin-top:2px;}
+  .f-group.has-error .f-error-text{display:block;}
+
+  .f-banner{display:none;font-size:14px;border-radius:8px;padding:12px 14px;margin-top:6px;}
+  .f-banner.show{display:block;}
+  .f-banner.is-error{background:#fdeceb;color:#a5322f;border:1px solid #f4c9c5;}
+  .f-banner.is-info{background:#efe6fd;color:var(--brand-onlight);border:1px solid #ddc9fb;}
+
+  .btn.btn-loading{opacity:0.75;cursor:progress;}
+
+  .sample-success{text-align:center;padding:20px 6px 6px;}
+  .sample-success .success-icon{
+    width:56px;height:56px;border-radius:50%;background:#efe6fd;color:var(--brand-onlight);
+    display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;
+    margin:0 auto 18px;
+  }
+  .sample-success h3{font-size:20px;font-weight:800;margin-bottom:10px;}
+  .sample-success .desc{font-size:14.5px;color:var(--on-paper-dim);margin:0 0 16px;}
+  .sample-success .ref-id{
+    display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:12.5px;
+    background:var(--paper);border:1px solid var(--paper-line);border-radius:6px;
+    padding:6px 12px;color:var(--on-paper);margin-bottom:20px;
+  }
+  .success-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .sample-success .custom-note{margin-top:18px;}
+
+  /* ---------- tech deep dive ---------- */
+  .tech-panel{background:var(--ink);border:1px solid var(--ink-line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);}
+  .tech-tabs{display:flex;gap:6px;padding:16px 16px 0;flex-wrap:wrap;}
+  .tech-tab{
+    appearance:none;-webkit-appearance:none;
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;padding:9px 14px;border-radius:7px 7px 0 0;
+    background:var(--ink-2);color:var(--on-ink-dim);cursor:pointer;border:1px solid var(--ink-line);border-bottom:none;
+  }
+  .tech-tab.active{background:var(--ink-3);color:var(--signal);}
+  .tech-body{background:var(--ink-3);padding:26px 28px 30px;}
+  .tech-pane{display:none;}
+  .tech-pane.active{display:block;}
+  .tech-pane ul{margin:0;padding-left:20px;color:var(--on-ink-dim);font-size:14.5px;line-height:1.8;}
+  .tech-pane ul li strong{color:var(--on-ink);}
+  pre.tech-code{
+    background:var(--ink);color:#e6d9fb;border:1px solid var(--ink-line);border-radius:8px;
+    padding:18px 20px;font-family:'IBM Plex Mono',monospace;font-size:12.8px;overflow-x:auto;margin:0;line-height:1.7;
+  }
+  pre.tech-code .k{color:var(--signal);}
+  pre.tech-code .s{color:var(--brand-lavender);}
+
+  /* ---------- footer ---------- */
+  footer.site{background:var(--ink);color:var(--on-ink-dim);padding:56px 0 30px;border-top:1px solid var(--ink-line);}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;}
+  @media (max-width:760px){.foot-grid{grid-template-columns:1fr;}}
+  .foot-grid h5{color:var(--on-ink);font-size:13px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:14px;font-family:'IBM Plex Mono',monospace;}
+  .foot-grid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:14.5px;}
+  .foot-grid ul a:hover{color:var(--on-ink);}
+  .foot-bottom{margin-top:44px;padding-top:24px;border-top:1px solid var(--ink-line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;}
+
+  /* ---------- footer newsletter ---------- */
+  .foot-newsletter{margin-top:18px;}
+  .foot-newsletter h6{color:var(--on-ink);font-size:13px;font-weight:700;margin:0 0 10px;}
+  .newsletter-form{display:flex;flex-direction:column;gap:8px;max-width:320px;}
+  .newsletter-row{display:flex;gap:8px;}
+  .newsletter-row input{
+    flex:1;min-width:0;border:1px solid var(--ink-line);border-radius:8px;padding:10px 12px;font-size:13.5px;
+    font-family:'Source Sans 3',sans-serif;background:var(--ink-2);color:var(--on-ink);
+  }
+  .newsletter-row input::placeholder{color:var(--on-ink-dim);}
+  .newsletter-row input:focus{outline:2px solid var(--signal);outline-offset:1px;}
+  .newsletter-row .btn{padding:10px 16px;font-size:13.5px;flex:0 0 auto;}
+  .newsletter-banner{display:none;font-size:12.5px;border-radius:6px;padding:8px 10px;}
+  .newsletter-banner.show{display:block;}
+  .newsletter-banner.is-error{background:rgba(255,111,97,0.12);color:#ff9086;border:1px solid rgba(255,111,97,0.35);}
+  .newsletter-banner.is-success{background:rgba(185,140,255,0.12);color:var(--signal);border:1px solid rgba(185,140,255,0.35);}
+
+  .foot-social{flex-direction:row!important;gap:10px!important;margin-top:6px!important;}
+  .foot-social li a{
+    display:flex;align-items:center;justify-content:center;width:34px;height:34px;
+    border-radius:50%;border:1px solid var(--ink-line);color:var(--on-ink-dim);font-size:13px;transition:.2s;
+  }
+  .foot-social li a:hover{background:var(--action);border-color:var(--action);color:var(--action-ink);}
+
+  /* ---------- WhatsApp float + sticky CTA ---------- */
+  .whatsapp-float{
+    position:fixed;right:28px;bottom:88px;width:56px;height:56px;border-radius:50%;
+    background:var(--action);color:var(--action-ink);display:flex;align-items:center;justify-content:center;
+    font-size:28px;box-shadow:0 10px 26px -8px rgba(255,157,46,0.55);z-index:200;transition:transform .2s ease;
+  }
+  .whatsapp-float:hover{transform:scale(1.08);color:var(--action-ink);}
+  .sticky-cta{
+    position:fixed;left:28px;bottom:28px;display:flex;align-items:center;gap:8px;
+    padding:12px 20px;border-radius:50px;background:var(--brand-violet);color:#fff;
+    font-size:14px;font-weight:700;box-shadow:0 10px 26px -8px rgba(124,87,234,0.55);
+    z-index:200;opacity:0;visibility:hidden;transform:translateY(14px);transition:all .25s ease;
+  }
+  .sticky-cta.show{opacity:1;visibility:visible;transform:translateY(0);}
+  .sticky-cta:hover{color:#fff;transform:translateY(-2px);}
+  .whatsapp-float.is-hidden, .sticky-cta.is-hidden{display:none;}
+
+  /* ---------- chat widget ---------- */
+  .chat-launcher{
+    position:fixed;right:28px;bottom:152px;width:60px;height:60px;border-radius:50%;
+    background:linear-gradient(135deg, var(--brand-violet), var(--brand-lavender));color:#fff;
+    display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;
+    box-shadow:0 14px 30px -10px rgba(124,87,234,0.6);z-index:300;transition:transform .2s ease;
+  }
+  .chat-launcher:hover{transform:scale(1.06);}
+  .chat-launcher svg{width:26px;height:26px;display:block;}
+  .chat-launcher.is-hidden{display:none;}
+
+  .chat-panel{
+    position:fixed;right:28px;bottom:100px;width:380px;max-width:92vw;height:min(640px,78vh);
+    background:var(--ink);border:1px solid var(--ink-line);border-radius:var(--radius);box-shadow:var(--shadow-lg);
+    display:flex;flex-direction:column;overflow:hidden;z-index:290;
+    opacity:0;visibility:hidden;transform:translateY(16px) scale(0.98);transform-origin:bottom right;
+    transition:opacity .2s ease, transform .2s ease, visibility .2s ease;
+  }
+  .chat-panel.open{opacity:1;visibility:visible;transform:none;}
+
+  .chat-header{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:14px 16px;border-bottom:1px solid var(--ink-line);background:var(--ink-2);flex:0 0 auto;
+  }
+  .chat-header-brand{display:flex;align-items:center;gap:10px;min-width:0;}
+  .chat-brand-mark{width:30px;height:30px;flex:0 0 auto;display:block;}
+  .chat-brand-name{margin:0;font-family:'Archivo',sans-serif;font-weight:800;font-size:14.5px;color:var(--on-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .chat-brand-status{margin:2px 0 0;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--on-ink-dim);display:flex;align-items:center;gap:6px;}
+  .chat-status-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;flex:0 0 auto;box-shadow:0 0 0 3px rgba(74,222,128,0.18);}
+  .chat-close-btn{background:none;border:none;color:var(--on-ink-dim);cursor:pointer;padding:6px;line-height:0;border-radius:6px;flex:0 0 auto;}
+  .chat-close-btn:hover{color:var(--on-ink);}
+  .chat-close-btn svg{width:20px;height:20px;display:block;}
+
+  .chat-messages{flex:1;overflow-y:auto;padding:18px 16px;display:flex;flex-direction:column;gap:12px;background:var(--ink);}
+  .chat-messages::-webkit-scrollbar, .chat-input-row textarea::-webkit-scrollbar{width:6px;}
+  .chat-messages::-webkit-scrollbar-track, .chat-input-row textarea::-webkit-scrollbar-track{background:transparent;}
+  .chat-messages::-webkit-scrollbar-thumb, .chat-input-row textarea::-webkit-scrollbar-thumb{background:var(--ink-line);border-radius:3px;}
+
+  .chat-msg{max-width:82%;padding:11px 14px;font-size:14.5px;line-height:1.55;}
+  .chat-msg p{margin:0;}
+  .chat-msg.ai{align-self:flex-start;background:var(--ink-2);border:1px solid var(--ink-line);color:var(--on-ink);border-radius:14px 14px 14px 4px;}
+  .chat-msg.user{align-self:flex-end;background:linear-gradient(135deg, var(--brand-violet), var(--brand-lavender));color:#fff;border-radius:14px 14px 4px 14px;}
+  .chat-msg.error{align-self:flex-start;background:rgba(255,111,97,0.12);color:#ff9086;border:1px solid rgba(255,111,97,0.35);border-radius:14px 14px 14px 4px;}
+
+  .chat-msg-typing{display:inline-flex;align-items:center;gap:5px;padding:14px;}
+  .chat-msg-typing .dot{width:6px;height:6px;border-radius:50%;background:var(--on-ink-dim);opacity:0.4;animation:chatTypingDot 1.1s infinite ease-in-out;}
+  .chat-msg-typing .dot:nth-child(2){animation-delay:0.15s;}
+  .chat-msg-typing .dot:nth-child(3){animation-delay:0.3s;}
+  @keyframes chatTypingDot{
+    0%, 60%, 100%{opacity:0.35;transform:translateY(0);}
+    30%{opacity:1;transform:translateY(-3px);}
+  }
+  @media (prefers-reduced-motion: reduce){ .chat-msg-typing .dot{animation:none;opacity:0.7;} }
+
+  .chat-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px;}
+  .chat-chip{
+    font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:var(--on-ink-dim);
+    background:transparent;border:1px solid var(--ink-line);border-radius:50px;padding:8px 14px;cursor:pointer;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .chat-chip:hover{border-color:var(--signal);color:var(--signal);}
+
+  .chat-input-area{flex:0 0 auto;border-top:1px solid var(--ink-line);background:var(--ink-2);padding:12px;}
+  .chat-input-row{display:flex;align-items:flex-end;gap:8px;}
+  .chat-input-row textarea{
+    flex:1;resize:none;min-height:22px;max-height:120px;overflow-y:auto;
+    border:1px solid var(--ink-line);border-radius:10px;padding:10px 12px;font-size:14px;
+    font-family:'Source Sans 3',sans-serif;background:var(--ink);color:var(--on-ink);line-height:1.4;
+  }
+  .chat-input-row textarea::placeholder{color:var(--on-ink-dim);}
+  .chat-input-row textarea:focus{outline:2px solid var(--signal);outline-offset:1px;}
+  .chat-send{width:40px;height:40px;border-radius:50%;padding:0;flex:0 0 auto;display:flex;align-items:center;justify-content:center;}
+  .chat-send svg{width:18px;height:18px;display:block;}
+  .chat-send:disabled{opacity:0.45;cursor:not-allowed;transform:none;}
+  .chat-note{margin:8px 2px 0;font-size:11px;color:var(--on-ink-dim);text-align:center;}
+
+  @media only screen and (max-width:479px){
+    .whatsapp-float{width:48px;height:48px;font-size:22px;right:16px;bottom:78px;}
+    .sticky-cta{left:16px;bottom:16px;padding:10px 16px;font-size:13px;}
+    .sticky-cta span{display:none;}
+    .chat-launcher{width:52px;height:52px;right:16px;bottom:16px;}
+    .chat-panel{right:0;bottom:0;left:0;top:0;width:100%;height:100%;max-width:100%;border-radius:0;border:none;}
+  }
+
+  /* ---------- FAQ accordion ---------- */
+  .faq-item{background:var(--paper-card);border:1px solid var(--paper-line);border-radius:12px;margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .faq-q{
+    width:100%;text-align:left;background:none;border:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:20px 22px;font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:16px;color:var(--on-paper);
+  }
+  .faq-q .sign{font-family:'IBM Plex Mono',monospace;font-size:20px;color:var(--brand-onlight);flex:0 0 auto;transition:transform .2s ease;}
+  .faq-item.open .faq-q .sign{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+  .faq-a p{margin:0;padding:0 22px 20px;font-size:14.5px;color:var(--on-paper-dim);}
+
+  ::selection{background:rgba(185,140,255,0.3);}
+</style>
+</head>
+
+<body>
+<nav class="site">
+  <div class="row">
+    <a href="#top" class="brand"><img src="../assets/images/logo/logo-mark-transparent.png" alt="" class="brand-mark">CoderAIM</a>
+    <!-- <h4 class="logo-text">CoderAim</h4> -->
+    <div class="nav-links">
+      <a href="#how-it-works">How It Works</a>
+      <a href="#zero-maintenance">Zero Maintenance</a>
+      <a href="#industries">Industries</a>
+      <a href="#trust">Trust</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="#technical">For CTOs</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-primary btn-sm" href="#sample-form">Get Free Sample Data</a>
+    </div>
+    <button type="button" class="nav-burger" id="navBurger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-inner">
+    <button type="button" class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <nav class="mobile-menu-links" aria-label="Mobile">
+      <a href="#how-it-works">How It Works</a>
+      <a href="#zero-maintenance">Zero Maintenance</a>
+      <a href="#industries">Industries</a>
+      <a href="#trust">Trust</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="#technical">For CTOs</a>
+    </nav>
+    <a class="btn btn-primary" href="#sample-form">Get Free Sample Data</a>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <svg class="hero-flow" viewBox="0 0 1200 600" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M -50 480 C 250 380, 450 520, 750 420 S 1150 380, 1300 460" />
+    <path d="M -50 180 C 300 260, 500 100, 800 200 S 1150 260, 1300 160" />
+    <path d="M -50 330 C 350 300, 600 380, 900 300 S 1200 260, 1300 330" />
+  </svg>
+  <div class="container">
+    <span class="eyebrow">Managed Data Infrastructure — Fully Outsourced</span>
+    <p class="brand-motto">Grow with Vision. Build with AIM.</p>
+    <h1>Your Data Pipeline.<br>Fully Managed.<br><span class="accent">Zero Maintenance.</span></h1>
+    <p class="lede">CoderAIM's in-house engineering team builds, runs, and repairs the data pipelines your business depends on — extraction, AI parsing, monitoring, and delivery. When a target site redesigns its layout or tightens its anti-bot defenses at 2 a.m., that's our engineer's problem, not yours.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#sample-form">Get a Free Sample Dataset →</a>
+      <a class="btn btn-ghost-dark" href="#how-it-works">See How Managed Pipelines Work</a>
+    </div>
+    <div class="trust-line">
+      <span>24/7 pipeline monitoring</span>
+      <span>GDPR &amp; CCPA-aware collection</span>
+      <span>In-house engineers — never outsourced further</span>
+    </div>
+    <div class="format-ticker">
+      <span>Delivered as</span>
+      <b>JSON</b><span class="dot">·</span><b>CSV</b><span class="dot">·</span><b>Excel</b><span class="dot">·</span><b>Custom API</b><span class="dot">·</span><b>Webhooks</b><span class="dot">·</span><b>Live Dashboards</b>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROBLEM ============ -->
+<section class="band on-white" id="problem">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow">The maintenance burden nobody budgets for</span>
+      <h2>Every data feed breaks. It's only a question of when.</h2>
+      <p>Scraping a site once is easy. Keeping that feed alive for eighteen months is the actual job — and it's the part most teams don't plan for.</p>
+    </div>
+    <div class="grid-3">
+      <div class="problem-card">
+        <span class="tag">Layout drift</span>
+        <h4>A site redesigns overnight.</h4>
+        <p>One shifted class name and your extraction silently returns empty fields — or worse, plausible-looking wrong ones nobody catches until a report is wrong.</p>
+      </div>
+      <div class="problem-card">
+        <span class="tag">Anti-bot escalation</span>
+        <h4>Defenses evolve. Scripts don't.</h4>
+        <p>Cloudflare, PerimeterX, and rate limits get tightened continuously. A script written once and forgotten falls behind within weeks.</p>
+      </div>
+      <div class="problem-card">
+        <span class="tag">No one's watching</span>
+        <h4>Failures go unnoticed.</h4>
+        <p>Without someone actively monitoring the pipeline, broken or incomplete data flows straight into your dashboards — for weeks, sometimes.</p>
+      </div>
+    </div>
+    <p class="problem-note">That's the cost most "scraping tools" don't include. CoderAIM removes it entirely — permanently.</p>
+    <p style="text-align:center;margin-top:16px;font-size:14px;"><a href="#sample-form" style="color:var(--brand-onlight);font-weight:600;">See how we fix this →</a></p>
+  </div>
+</section>
+
+<!-- ============ WE BECOME YOUR DATA TEAM ============ -->
+<section class="band on-ink-2" id="compare">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Differentiation</span>
+      <h2>We don't sell you a scraper. We become your data team.</h2>
+      <p>Here's what it actually takes to keep a pipeline alive — compared honestly across your three real options.</p>
+    </div>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr><th></th><th>Build In-House</th><th>Freelancer / Marketplace</th><th class="win">CoderAIM Managed</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>Time to first data</th><td>4–8 weeks of hiring and building</td><td>1–2 weeks, inconsistent quality</td><td class="win">Free sample in 48 hours</td></tr>
+          <tr><th>When a layout changes</th><td>Your engineer drops other work to fix it</td><td>Open a ticket, wait, hope they reply</td><td class="win">Detected and patched by our team — usually before you notice</td></tr>
+          <tr><th>Anti-bot handling</th><td>Requires ongoing, dedicated infra investment</td><td>Rarely maintained past the first month</td><td class="win">Built into every pipeline we run, continuously</td></tr>
+          <tr><th>Compliance review</th><td>On you and your legal team</td><td>Rarely offered at all</td><td class="win">Reviewed against GDPR/CCPA before extraction begins</td></tr>
+          <tr><th>Delivery formats</th><td>Whatever your engineer has time to build</td><td>Usually one flat file, nothing else</td><td class="win">JSON, CSV, Excel, API, Webhooks, dashboards — your choice</td></tr>
+          <tr><th>Cost shape</th><td>Salary + tooling + turnover risk</td><td>Variable, per-gig pricing</td><td class="win">Fixed, predictable managed-service pricing</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4-STEP PIPELINE ============ -->
+<section class="band on-white" id="how-it-works">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow">How it works</span>
+      <h2>How a managed pipeline actually runs</h2>
+      <p>Four stages, one team accountable for all of them — from the first requirement call to the data landing in your system.</p>
+    </div>
+    <div class="steps">
+      <div class="step-line"></div>
+      <div class="step">
+        <div class="node">01</div>
+        <h4>Discover &amp; Scope</h4>
+        <p>Our engineers map your exact requirements — sources, fields, volume, frequency, and target format — before any extraction code is written.</p>
+      </div>
+      <div class="step">
+        <div class="node">02</div>
+        <h4>Build &amp; Extract</h4>
+        <p>We build custom extraction and AI-powered parsing for your specific sources, not a generic template that breaks on the first edge case.</p>
+      </div>
+      <div class="step">
+        <div class="node">03</div>
+        <h4>Monitor &amp; Maintain</h4>
+        <p>Every pipeline runs under continuous monitoring. Layout changes and anti-bot escalations are caught and patched by an engineer, not a ticket queue.</p>
+      </div>
+      <div class="step">
+        <div class="node">04</div>
+        <h4>Deliver</h4>
+        <p>Clean, structured data lands where your team already works — JSON, CSV, Excel, API, webhook, or a live dashboard — on the schedule you set.</p>
+      </div>
+    </div>
+    <div style="margin-top:52px;">
+      <div class="cta-band">
+        <div>
+          <h3>Want to see this running on your own use case?</h3>
+          <p>No cost, no commitment — just a real sample built around your data.</p>
+        </div>
+        <a class="btn btn-primary" href="#sample-form">Get Free Sample Data →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ZERO MAINTENANCE CAPABILITY ============ -->
+<section class="band on-ink" id="zero-maintenance">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">What "zero maintenance" actually means</span>
+      <h2>It isn't a slogan. Here's the mechanism behind it.</h2>
+      <p>Four capabilities run underneath every pipeline we operate, whether you ever think about them or not.</p>
+    </div>
+    <div class="grid-4">
+      <div class="cap-card">
+        <span class="num">01 · Access</span>
+        <h4>Anti-Bot &amp; Access Handling</h4>
+        <p>Cloudflare challenges, rate limits, CAPTCHAs, and IP blocks are our engineers' daily problem. Every pipeline is built to keep collecting as sites tighten their defenses.</p>
+      </div>
+      <div class="cap-card">
+        <span class="num">02 · Structure</span>
+        <h4>Layout-Change Detection</h4>
+        <p>Extracted output is continuously checked against expected structure. When a source redesigns a page, the drift is flagged and repaired by an engineer, not a support queue.</p>
+      </div>
+      <div class="cap-card">
+        <span class="num">03 · Uptime</span>
+        <h4>24/7 Monitoring &amp; Alerting</h4>
+        <p>Pipelines are watched around the clock for failures, empty responses, and delivery gaps — with our team responding directly, not an alert you have to act on yourself.</p>
+      </div>
+      <div class="cap-card">
+        <span class="num">04 · Response</span>
+        <h4>Incident Ownership</h4>
+        <p>When something does break, you get a fix, not a status page. Our engineering team owns resolution end-to-end, from detection to delivery back to normal.</p>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:28px;font-size:14px;"><a href="#faq" style="color:var(--signal);font-weight:600;">Questions about a specific capability? →</a></p>
+  </div>
+</section>
+
+<!-- ============ DELIVERY FORMATS ============ -->
+<section class="band on-white" id="formats">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow">Delivery, on your terms</span>
+      <h2>However your team consumes data, we deliver it that way.</h2>
+      <p>No format lock-in. Most clients use two or three of these across different teams inside the same company.</p>
+    </div>
+    <div class="grid-6">
+      <div class="format-card"><span class="fmt">JSON</span><p>For engineering teams piping structured data straight into internal systems and applications.</p></div>
+      <div class="format-card"><span class="fmt">CSV</span><p>For analysts and operations teams who work in spreadsheets and BI tools day to day.</p></div>
+      <div class="format-card"><span class="fmt">Excel</span><p>For stakeholders and finance teams who live in workbooks, not query languages.</p></div>
+      <div class="format-card"><span class="fmt">Custom API</span><p>For products and internal tools that need to query fresh data live, on demand.</p></div>
+      <div class="format-card"><span class="fmt">Webhooks</span><p>For real-time triggers — a price change or new listing fires directly into your workflow.</p></div>
+      <div class="format-card"><span class="fmt">Dashboards</span><p>For execs and operators who want the answer, not the dataset — built and hosted by us.</p></div>
+    </div>
+    <p style="text-align:center;margin-top:24px;font-size:14px;"><a href="#sample-form" style="color:var(--brand-onlight);font-weight:600;">Get a sample in your format →</a></p>
+  </div>
+</section>
+
+<!-- ============ INDUSTRIES ============ -->
+<section class="band on-paper" id="industries">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow">Built around your industry</span>
+      <h2>Data pipelines that already know how your industry uses data.</h2>
+      <p>Three verticals we run the most pipelines in today — each with its own failure modes and compliance angle.</p>
+    </div>
+    <div class="grid-3">
+      <div class="ind-card">
+        <span class="badge">E-Commerce &amp; Retail</span>
+        <h4>Competitor prices and stock change hourly.</h4>
+        <p>Manual price checks can't keep pace with marketplace repricing engines.</p>
+        <span class="row-label">We deliver</span>
+        <p>Real-time price &amp; competitor monitoring, product catalogs, and stock feeds — normalized across every source you track.</p>
+        <span class="row-label">Format</span>
+        <p>API / Webhook, refreshed on your schedule</p>
+        <a class="btn btn-ghost-light btn-sm prefill-cta" data-industry="ecommerce" data-data="pricing" href="#sample-form">Get E-Commerce Sample Data →</a>
+      </div>
+      <div class="ind-card">
+        <span class="badge">Real Estate &amp; PropTech</span>
+        <h4>Listings scatter across MLS, brokers, and portals.</h4>
+        <p>The same property shows up three times with three different prices and goes stale within days.</p>
+        <span class="row-label">We deliver</span>
+        <p>Deduplicated, normalized listing data — price, status, photos, and agent contact — matched across sources.</p>
+        <span class="row-label">Format</span>
+        <p>JSON / CSV feed into your CRM or dashboard</p>
+        <a class="btn btn-ghost-light btn-sm prefill-cta" data-industry="real-estate" data-data="real-estate" href="#sample-form">Get Real Estate Sample Data →</a>
+      </div>
+      <div class="ind-card">
+        <span class="badge">Finance &amp; Investment</span>
+        <h4>Alternative data needs to be defensible, not just fast.</h4>
+        <p>A dataset your risk and compliance team can't sign off on isn't usable, no matter how complete it is.</p>
+        <span class="row-label">We deliver</span>
+        <p>Compliance-reviewed collection with an audit trail per data point — public filings, pricing, and market signals.</p>
+        <span class="row-label">Format</span>
+        <p>API / Custom feed, structured for your data warehouse</p>
+        <a class="btn btn-ghost-light btn-sm prefill-cta" data-industry="finance" data-data="financial" href="#sample-form">Get Finance Sample Data →</a>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:28px;font-size:14px;color:var(--on-paper-dim);">Also running pipelines in travel, jobs, B2B lead generation, and healthcare data — <a href="#sample-form" style="color:var(--brand-onlight);font-weight:600;">tell us your use case →</a></p>
+  </div>
+</section>
+
+<!-- ============ TRUST / COMPLIANCE ============ -->
+<section class="band on-white" id="trust">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Enterprise trust</span>
+      <h2>Built into how we work — not bolted on afterward.</h2>
+      <p>The questions your legal and security teams will ask, answered before you have to ask us.</p>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-item"><span class="ic">◆</span><span>In-house engineers only — no freelancer marketplace</span></div>
+      <div class="trust-item"><span class="ic">◆</span><span>GDPR &amp; CCPA-aware collection review on every project</span></div>
+      <div class="trust-item"><span class="ic">◆</span><span>Robots.txt &amp; rate-limit respecting by default</span></div>
+      <div class="trust-item"><span class="ic">◆</span><span>Incident response owned end-to-end by our team</span></div>
+    </div>
+    <div class="compliance-panel">
+      <div>
+        <h4>Data Collection Methodology</h4>
+        <p>Before any engagement begins, our engineering team reviews target data sources for GDPR, CCPA/CPRA, and sector-specific rules — including MLS/IDX syndication rules for real estate and FCRA for consumer-related data. We collect only publicly accessible data and respect each source's robots.txt and published rate limits.</p>
+      </div>
+      <div style="text-align:right;">
+        <a class="btn btn-primary" href="contact.html">Talk to Our Team →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="band on-paper" id="pricing">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow">Pricing</span>
+      <h2>Pricing that scales with your pipeline, not against it.</h2>
+      <p>No published rate card — every engagement is scoped and quoted around what you actually need, not a generic tier.</p>
+    </div>
+    <div class="grid-4">
+      <div class="ind-card">
+        <span class="badge">Free Sample</span>
+        <h4>Free</h4>
+        <p>No commitment, no credit card</p>
+        <ul class="form-benefits">
+          <li>1 data source</li>
+          <li>Up to 100 sample records</li>
+          <li>Standard format (CSV/JSON)</li>
+          <li>Delivered in 48 hours</li>
+        </ul>
+        <a class="btn btn-ghost-light btn-sm" href="#sample-form">Get Free Sample →</a>
+      </div>
+      <div class="ind-card">
+        <span class="badge">Starter</span>
+        <h4>Custom Quote</h4>
+        <p>One-time project</p>
+        <ul class="form-benefits">
+          <li>Fixed scope, 1 data source</li>
+          <li>Standard format (CSV/JSON)</li>
+          <li>One-time delivery</li>
+          <li>Email support</li>
+        </ul>
+        <a class="btn btn-ghost-light btn-sm" href="#sample-form">Get a Quote →</a>
+      </div>
+      <div class="ind-card featured">
+        <span class="pricing-badge">Most Popular</span>
+        <span class="badge">Business</span>
+        <h4>Custom Quote</h4>
+        <p>Recurring data feeds</p>
+        <ul class="form-benefits">
+          <li>Scheduled/recurring feeds</li>
+          <li>Multiple data sources</li>
+          <li>API delivery</li>
+          <li>Priority support</li>
+        </ul>
+        <a class="btn btn-primary btn-sm" href="#sample-form">Start a Project →</a>
+      </div>
+      <div class="ind-card">
+        <span class="badge">Enterprise</span>
+        <h4>Custom</h4>
+        <p>Fully managed</p>
+        <ul class="form-benefits">
+          <li>Dedicated infrastructure</li>
+          <li>SLA guarantees</li>
+          <li>Real-time feeds</li>
+          <li>Dedicated support &amp; custom integrations</li>
+        </ul>
+        <a class="btn btn-ghost-light btn-sm" href="contact.html">Talk to Sales →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING: FEATURE COMPARISON ============ -->
+<section class="band on-ink-2">
+  <div class="container">
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr><th></th><th>Free Sample</th><th>Starter</th><th class="win">Business</th><th>Enterprise</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>Data Sources</th><td>1</td><td>1</td><td class="win">Multiple</td><td>Unlimited</td></tr>
+          <tr><th>Delivery Format</th><td>CSV / JSON</td><td>CSV / JSON</td><td class="win">API</td><td>API / Custom</td></tr>
+          <tr><th>Scheduled/Recurring</th><td>—</td><td>—</td><td class="win">✓</td><td>✓</td></tr>
+          <tr><th>API &amp; Webhook Delivery</th><td>—</td><td>—</td><td class="win">✓</td><td>✓</td></tr>
+          <tr><th>Real-Time Feeds</th><td>—</td><td>—</td><td class="win">—</td><td>✓</td></tr>
+          <tr><th>Dedicated Infrastructure</th><td>—</td><td>—</td><td class="win">—</td><td>✓</td></tr>
+          <tr><th>SLA Guarantee</th><td>—</td><td>—</td><td class="win">—</td><td>✓</td></tr>
+          <tr><th>Support Level</th><td>—</td><td>Email</td><td class="win">Priority</td><td>Dedicated</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="text-align:center;margin-top:28px;font-size:14px;color:var(--on-ink-dim);">Pricing depends on project scope — every quote is tailored to your exact needs. Most quotes delivered within 24 hours.</p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="band on-paper" id="faq">
+  <div class="container" style="max-width:820px;">
+    <div class="head center">
+      <span class="eyebrow">Questions</span>
+      <h2>Frequently Asked Questions</h2>
+      <p>Everything most CEOs, ops leads, and CTOs ask before their first pipeline.</p>
+    </div>
+    <div id="faqList">
+      <div class="faq-item open">
+        <button class="faq-q" type="button" aria-expanded="true" aria-controls="faqAnswer1">Is web scraping legal for my business use case?<span class="sign" aria-hidden="true">+</span></button>
+        <div class="faq-a" id="faqAnswer1"><p>Yes, when done ethically and in compliance with public data access and applicable regulations. We follow responsible scraping practices and can discuss your specific compliance needs.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faqAnswer2">What format will I receive the data in?<span class="sign" aria-hidden="true">+</span></button>
+        <div class="faq-a" id="faqAnswer2"><p>We deliver data in your preferred format — JSON, CSV, Excel, or directly via API — tailored to how your team works.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faqAnswer3">How long does a typical project take?<span class="sign" aria-hidden="true">+</span></button>
+        <div class="faq-a" id="faqAnswer3"><p>Turnaround depends on scope and complexity, but most projects are delivered within days, not weeks, thanks to our automated pipelines.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faqAnswer4">Is my data kept confidential?<span class="sign" aria-hidden="true">+</span></button>
+        <div class="faq-a" id="faqAnswer4"><p>Absolutely. We sign NDAs on request and follow strict data-handling practices to keep your information secure.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faqAnswer5">Do you offer one-time or recurring data delivery?<span class="sign" aria-hidden="true">+</span></button>
+        <div class="faq-a" id="faqAnswer5"><p>Both. We support one-time extractions as well as scheduled, real-time, or recurring data feeds based on your needs.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faqAnswer6">Can you scrape data from mobile apps, not just websites?<span class="sign" aria-hidden="true">+</span></button>
+        <div class="faq-a" id="faqAnswer6"><p>Yes, we support real-time data extraction from mobile applications, delivered via API or structured data files.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faqAnswer7">What if I'm not sure what I need yet?<span class="sign" aria-hidden="true">+</span></button>
+        <div class="faq-a" id="faqAnswer7"><p>Start with our free pilot run — we'll deliver a sample dataset tailored to your requirements so you can evaluate before committing.</p></div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:20px;font-size:14px;"><a href="contact.html" style="color:var(--brand-onlight);font-weight:600;">Still have questions? Contact us →</a></p>
+  </div>
+</section>
+
+<!-- ============ LEAD FORM ============ -->
+<section class="band on-paper" id="sample-form">
+  <div class="container">
+    <div class="form-wrap">
+      <div>
+        <span class="eyebrow">Start here</span>
+        <h2 style="font-size:clamp(24px,3.4vw,32px);font-weight:800;">Get a Free Sample Dataset</h2>
+        <p style="color:var(--on-paper-dim);margin-top:14px;font-size:16px;max-width:46ch;">Tell us what data you need. Our engineering team builds a real, ready-to-use sample around your exact use case — no cost, no card, no commitment.</p>
+        <ul class="form-benefits">
+          <li>Free sample dataset, no cost or card required</li>
+          <li>Built around your exact data requirements</li>
+          <li>Reviewed by our engineering team, not a chatbot</li>
+          <li>No obligation to purchase afterward</li>
+        </ul>
+      </div>
+      <div class="form-card">
+        <div id="sampleFormWrapper">
+        <form id="sampleForm" method="POST" action="https://api.web3forms.com/submit" enctype="multipart/form-data" novalidate>
+          <input type="hidden" name="access_key" value="9184700e-3fa8-448e-bd31-bf6617bb0d92">
+          <input type="hidden" name="subject" value="New Free Sample Data Request — Zero-Maintenance Landing Concept">
+          <input type="hidden" name="from_name" value="CoderAIM Landing Concept">
+          <input type="hidden" name="lead_email_type" id="leadEmailType" value="business">
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
+
+          <div class="f-row">
+            <div class="f-group">
+              <label for="fullNameField">Full Name <span class="req">*</span></label>
+              <input type="text" name="full_name" id="fullNameField" placeholder="Jordan Lee" required>
+              <span class="f-error-text">Please enter your full name.</span>
+            </div>
+            <div class="f-group">
+              <label for="workEmailField">Work Email <span class="req">*</span></label>
+              <input type="email" name="work_email" id="workEmailField" placeholder="jordan@company.com" required>
+              <span class="f-error-text">Please enter a valid email address.</span>
+            </div>
+          </div>
+          <div class="f-hint" id="emailHint">Using a personal inbox? That's fine — just add your company name below so we can prioritize your request correctly.</div>
+          <div class="f-row">
+            <div class="f-group">
+              <label id="companyLabel" for="companyField">Company Name</label>
+              <input type="text" name="company_name" id="companyField" placeholder="Acme Inc.">
+              <span class="f-error-text">Please enter your company name.</span>
+            </div>
+            <div class="f-group">
+              <label for="industryField">Industry <span class="req">*</span></label>
+              <select name="industry" id="industryField" required>
+                <option value="" selected disabled>Select your industry</option>
+                <option value="ecommerce">E-commerce &amp; Retail</option>
+                <option value="real-estate">Real Estate</option>
+                <option value="finance">Finance &amp; Investment</option>
+                <option value="travel">Travel &amp; Hospitality</option>
+                <option value="other">Other</option>
+              </select>
+              <span class="f-error-text">Please select your industry.</span>
+            </div>
+          </div>
+          <div class="f-row">
+            <div class="f-group">
+              <label for="dataTypeField">Data Type Needed <span class="req">*</span></label>
+              <select name="data_required" id="dataTypeField" required>
+                <option value="" selected disabled>Select data type</option>
+                <option value="pricing">Pricing / Competitor Data</option>
+                <option value="product">Product Catalog Data</option>
+                <option value="real-estate">Real Estate Listings</option>
+                <option value="financial">Financial / Alt Data</option>
+                <option value="custom">Custom</option>
+              </select>
+              <span class="f-error-text">Please select the type of data you need.</span>
+            </div>
+            <div class="f-group">
+              <label for="budgetField">Monthly Budget</label>
+              <select name="monthly_budget" id="budgetField">
+                <option value="" selected disabled>Select a budget range</option>
+                <option value="1000-5000">1,000 – 5,000</option>
+                <option value="5000-10000">5,000 – 10,000</option>
+                <option value="10000-25000">10,000 – 25,000</option>
+                <option value="25000-plus">25,000+</option>
+                <option value="not-sure">Not sure yet</option>
+              </select>
+            </div>
+          </div>
+          <div class="f-group">
+            <label for="projectDescField">Tell us about your project</label>
+            <textarea name="project_description" id="projectDescField" rows="4" placeholder="Target sources, approximate volume, frequency, and any specific fields you need..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" id="sampleSubmitBtn" style="width:100%;justify-content:center;">
+            <span id="sampleSubmitText">Get Free Sample Data →</span>
+          </button>
+          <div id="formBanner" class="f-banner" role="alert" aria-live="polite"></div>
+        </form>
+        <p class="form-note">Reviewed by our engineering team directly · Response within 1 business day · No spam, no sales sequences</p>
+        </div>
+
+        <div id="sampleSuccess" class="sample-success" hidden aria-live="polite">
+          <div class="success-icon">✓</div>
+          <h3>Your Sample Data Request Has Been Received!</h3>
+          <p class="desc">Thanks for reaching out to CoderAIM. Our engineering team will review your requirements and get back to you within 1 business day.</p>
+          <span class="ref-id" id="sampleRefId">Reference ID: SD-000000</span>
+          <div class="success-actions">
+            <a id="sampleDownloadBtn" class="btn btn-primary" href="#" download hidden>Download Sample Data</a>
+            <a class="btn btn-ghost-light" href="mailto:info@coderaim.com">Email Our Team</a>
+          </div>
+          <p class="desc custom-note" id="sampleCustomNote" hidden>Since you requested a custom dataset, our team will prepare a tailored sample and reach out to you directly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECHNICAL DEEP DIVE ============ -->
+<section class="band on-ink-2" id="technical">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">For CTOs &amp; engineering leads</span>
+      <h2>Technical deep-dive: how the pipeline is actually built</h2>
+      <p>Most clients never need this section — that's the point of "managed." If you're evaluating us as a technical buyer, here's what's actually running underneath.</p>
+    </div>
+    <div class="tech-panel">
+      <div class="tech-tabs" role="tablist" aria-label="Technical deep dive sections">
+        <button type="button" class="tech-tab active" data-tab="arch" role="tab" aria-selected="true" aria-controls="techPane-arch" id="techTab-arch">Architecture</button>
+        <button type="button" class="tech-tab" data-tab="antibot" role="tab" aria-selected="false" aria-controls="techPane-antibot" id="techTab-antibot">Anti-Bot &amp; Resilience</button>
+        <button type="button" class="tech-tab" data-tab="api" role="tab" aria-selected="false" aria-controls="techPane-api" id="techTab-api">Webhook Payload Example</button>
+      </div>
+      <div class="tech-body">
+        <div class="tech-pane active" data-pane="arch" id="techPane-arch" role="tabpanel" aria-labelledby="techTab-arch">
+          <ul>
+            <li><strong>Hybrid extraction:</strong> headless-browser and direct-HTTP extraction chosen per source, based on how the target site actually renders.</li>
+            <li><strong>Distributed access layer:</strong> rotating proxy and request-pacing infrastructure matched to each source's rate limits.</li>
+            <li><strong>Structural-diff monitoring:</strong> extracted output is fingerprinted and compared run-over-run to catch layout drift automatically.</li>
+            <li><strong>Schema validation &amp; dedup:</strong> every record is validated and deduplicated against your defined schema before delivery.</li>
+            <li><strong>Queue-based retry logic:</strong> transient failures are retried automatically; persistent ones page an engineer.</li>
+            <li><strong>Cloud-hosted delivery infra:</strong> API, webhook, and dashboard layers run independently of the extraction layer, so a source-side issue never delays data already collected.</li>
+          </ul>
+        </div>
+        <div class="tech-pane" data-pane="antibot" id="techPane-antibot" role="tabpanel" aria-labelledby="techTab-antibot">
+          <ul>
+            <li><strong>Fingerprint &amp; header rotation:</strong> browser and request fingerprints are rotated per session to match real traffic patterns.</li>
+            <li><strong>Adaptive pacing:</strong> request rates auto-throttle against each source's observed limits instead of a fixed schedule.</li>
+            <li><strong>CAPTCHA fallback:</strong> edge cases route to human review rather than silently failing a run.</li>
+            <li><strong>Session persistence:</strong> legitimate cookie/session state is maintained where a source requires it.</li>
+            <li><strong>Escalation response:</strong> when a source hardens its defenses, the pipeline is re-engineered by hand, not left to fail.</li>
+          </ul>
+        </div>
+        <div class="tech-pane" data-pane="api" id="techPane-api" role="tabpanel" aria-labelledby="techTab-api">
+          <pre class="tech-code">{
+  <span class="k">"pipeline_id"</span>: <span class="s">"re-listings-004"</span>,
+  <span class="k">"event"</span>: <span class="s">"data.delivered"</span>,
+  <span class="k">"records"</span>: 482,
+  <span class="k">"format"</span>: <span class="s">"json"</span>,
+  <span class="k">"delivered_at"</span>: <span class="s">"2026-09-09T14:02:11Z"</span>,
+  <span class="k">"sample"</span>: {
+    <span class="k">"address"</span>: <span class="s">"142 Birchwood Ave, Austin, TX"</span>,
+    <span class="k">"price"</span>: 424000,
+    <span class="k">"status"</span>: <span class="s">"active"</span>,
+    <span class="k">"source"</span>: <span class="s">"broker-site-42"</span>
+  }
+}</pre>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:24px;font-size:14px;"><a href="contact.html" style="color:var(--signal);font-weight:600;">Talk to our engineering team →</a></p>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="band on-ink">
+  <div class="container">
+    <div class="cta-band" style="background:linear-gradient(120deg,var(--brand-violet),var(--action));">
+      <div>
+        <h3 style="color:var(--action-ink);">Stop maintaining a pipeline. Start receiving data.</h3>
+        <p style="color:rgba(255,255,255,0.82);">Get a free sample dataset built around your exact requirements — no cost, no commitment.</p>
+      </div>
+      <a class="btn" style="background:var(--ink);color:var(--on-ink);" href="#sample-form">Get Free Sample Data →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="brand" style="margin-bottom:14px;"><img src="../assets/images/logo/logo-mark-transparent.png" alt="" class="brand-mark lg">CoderAIM</div>
+        <p style="max-width:36ch;font-size:14.5px;">Your data pipeline. Fully managed. Zero maintenance. In-house engineers handling extraction, parsing, monitoring, and delivery — end to end.</p>
+        <div class="foot-newsletter">
+          <h6>Get Pipeline Updates</h6>
+          <form id="newsletterForm" class="newsletter-form" method="POST" action="https://api.web3forms.com/submit" enctype="multipart/form-data" novalidate>
+            <input type="hidden" name="access_key" value="9184700e-3fa8-448e-bd31-bf6617bb0d92">
+            <input type="hidden" name="subject" value="New Newsletter Signup — Zero-Maintenance Concept">
+            <input type="hidden" name="from_name" value="CoderAIM Zero-Maintenance Concept">
+            <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
+            <div class="newsletter-row">
+              <input type="email" name="email" id="newsletterEmail" placeholder="Enter your email for updates" aria-label="Email address" required>
+              <button type="submit" class="btn btn-primary btn-sm" id="newsletterSubmitBtn"><span id="newsletterSubmitText">Subscribe</span></button>
+            </div>
+            <div id="newsletterBanner" class="newsletter-banner" role="alert" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#zero-maintenance">Zero Maintenance</a></li>
+          <li><a href="#industries">Industries</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#technical">For CTOs</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li>Ahmedabad, India</li>
+          <li><a href="mailto:info@coderaim.com">info@coderaim.com</a></li>
+          <li><a href="tel:+919099440844">+91 90994 40844</a></li>
+        </ul>
+        <!-- TODO: add real social links -->
+        <ul class="foot-social">
+          <li><a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.114 20.452H3.558V9h3.556v11.452z"/></svg></a></li>
+          <li><a href="#" aria-label="Twitter / X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.897-.959-2.178-1.559-3.594-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 14.001-7.496 14.001-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z"/></svg></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 CoderAIM. All rights reserved.</span>
+      <span style="display:flex;gap:18px;">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-and-conditions.html">Terms</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/919099440844?text=Hi%2C%20I%27m%20interested%20in%20CoderAIM%27s%20data%20services." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2c-5.514 0-9.997 4.48-9.997 9.997 0 1.763.462 3.48 1.34 4.997L2 22l5.146-1.34a9.96 9.96 0 0 0 4.858 1.24h.004c5.514 0 9.996-4.48 9.996-9.997 0-2.67-1.04-5.18-2.928-7.07A9.935 9.935 0 0 0 12.004 2zm0 18.164h-.003a8.19 8.19 0 0 1-4.17-1.14l-.299-.177-3.055.796.816-2.98-.194-.306a8.164 8.164 0 0 1-1.253-4.36c0-4.51 3.672-8.181 8.184-8.181 2.187 0 4.24.852 5.786 2.399a8.128 8.128 0 0 1 2.394 5.788c0 4.511-3.672 8.161-8.206 8.161z"/></svg>
+</a>
+
+<!-- Sticky Sample Data CTA -->
+<a href="#sample-form" class="sticky-cta" id="stickyCta">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+  <span>Get Free Sample Data</span>
+</a>
+
+<!-- ============ CHAT WIDGET ============ -->
+<button type="button" class="chat-launcher" id="chatLauncher" aria-expanded="false" aria-controls="chatPanel" aria-label="Open chat">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+</button>
+
+<section class="chat-panel" id="chatPanel" role="dialog" aria-modal="false" aria-label="CoderAIM Assistant chat" aria-hidden="true">
+  <div class="chat-header">
+    <div class="chat-header-brand">
+      <img src="../assets/images/logo/logo-mark-transparent.png" alt="" class="chat-brand-mark">
+      <div>
+        <p class="chat-brand-name">CoderAIM Assistant</p>
+        <p class="chat-brand-status"><span class="chat-status-dot" aria-hidden="true"></span>Online</p>
+      </div>
+    </div>
+    <button type="button" class="chat-close-btn" id="chatCloseBtn" aria-label="Close chat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+
+  <div class="chat-messages" id="chatMessages" role="log" aria-live="polite" aria-relevant="additions" aria-label="Conversation with CoderAIM Assistant">
+    <div class="chat-msg ai">
+      <p>Hi! I'm the CoderAIM Assistant. Ask me about our data pipelines, pricing, or how to get a free sample — or pick a quick option below.</p>
+    </div>
+    <div class="chat-chips" id="chatChips">
+      <button type="button" class="chat-chip">What services do you offer?</button>
+      <button type="button" class="chat-chip">How does pricing work?</button>
+      <button type="button" class="chat-chip">Talk to a human</button>
+    </div>
+  </div>
+
+  <div class="chat-input-area">
+    <form id="chatForm">
+      <div class="chat-input-row">
+        <label for="chatInput" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;">Type your message</label>
+        <textarea id="chatInput" rows="1" placeholder="Type your message…" aria-label="Type your message"></textarea>
+        <button type="submit" class="btn btn-primary chat-send" id="chatSendBtn" aria-label="Send message" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </form>
+    <p class="chat-note">Enter to send · Shift+Enter for a new line</p>
+  </div>
+</section>
+
+<script>
+  (function(){
+    "use strict";
+
+    /* ---------- Sticky CTA show/hide on scroll ---------- */
+    var stickyCta = document.getElementById("stickyCta");
+    function toggleStickyCta(){
+      if (window.scrollY > 600) { stickyCta.classList.add("show"); }
+      else { stickyCta.classList.remove("show"); }
+    }
+    window.addEventListener("scroll", toggleStickyCta);
+    toggleStickyCta();
+
+    /* ---------- Mobile menu ---------- */
+    var navBurger = document.getElementById("navBurger");
+    var mobileMenu = document.getElementById("mobileMenu");
+    var mobileMenuClose = document.getElementById("mobileMenuClose");
+
+    function openMobileMenu(){
+      mobileMenu.classList.add("open");
+      mobileMenu.setAttribute("aria-hidden", "false");
+      navBurger.setAttribute("aria-expanded", "true");
+      document.body.classList.add("menu-open");
+      mobileMenuClose.focus();
+    }
+    function closeMobileMenu(){
+      mobileMenu.classList.remove("open");
+      mobileMenu.setAttribute("aria-hidden", "true");
+      navBurger.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("menu-open");
+      navBurger.focus();
+    }
+    navBurger.addEventListener("click", function(){
+      if (mobileMenu.classList.contains("open")) { closeMobileMenu(); } else { openMobileMenu(); }
+    });
+    mobileMenuClose.addEventListener("click", closeMobileMenu);
+    mobileMenu.addEventListener("click", function(event){
+      if (event.target === mobileMenu) { closeMobileMenu(); }
+    });
+    document.addEventListener("keydown", function(event){
+      if (event.key === "Escape" && mobileMenu.classList.contains("open")) { closeMobileMenu(); }
+    });
+    document.querySelectorAll(".mobile-menu-links a").forEach(function(link){
+      link.addEventListener("click", closeMobileMenu);
+    });
+
+    /* ---------- Footer newsletter form ---------- */
+    (function(){
+      var form = document.getElementById("newsletterForm");
+      if (!form) { return; }
+      var emailField = document.getElementById("newsletterEmail");
+      var banner = document.getElementById("newsletterBanner");
+      var submitBtn = document.getElementById("newsletterSubmitBtn");
+      var submitText = document.getElementById("newsletterSubmitText");
+      var defaultLabel = submitText.textContent;
+      var WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+      var SUBMIT_COOLDOWN_MS = 30 * 1000;
+      var COOLDOWN_KEY = "coderaim_zero_newsletter_last_submit";
+
+      function isValidEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+      function showBanner(message, type){
+        banner.textContent = message;
+        banner.className = "newsletter-banner show " + (type === "error" ? "is-error" : "is-success");
+      }
+      function clearBanner(){
+        banner.textContent = "";
+        banner.className = "newsletter-banner";
+      }
+      function isInCooldown(){
+        try {
+          var last = window.sessionStorage.getItem(COOLDOWN_KEY);
+          return last ? (Date.now() - parseInt(last, 10)) < SUBMIT_COOLDOWN_MS : false;
+        } catch (e) { return false; }
+      }
+      function markSubmitted(){
+        try { window.sessionStorage.setItem(COOLDOWN_KEY, String(Date.now())); } catch (e) {}
+      }
+      function setLoading(isLoading){
+        submitBtn.disabled = isLoading;
+        submitBtn.classList.toggle("btn-loading", isLoading);
+        submitText.textContent = isLoading ? "Sending..." : defaultLabel;
+      }
+
+      form.addEventListener("submit", function(event){
+        event.preventDefault();
+        clearBanner();
+
+        var value = emailField.value.trim();
+        if (!value || !isValidEmail(value)) {
+          showBanner("Please enter a valid email address.", "error");
+          emailField.focus();
+          return;
+        }
+        if (isInCooldown()) {
+          showBanner("You're already subscribed for now — thanks!", "success");
+          return;
+        }
+
+        setLoading(true);
+        markSubmitted();
+
+        var formData = new FormData(form);
+        fetch(WEB3FORMS_ENDPOINT, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: formData
+        })
+          .then(function(response){
+            return response.json().catch(function(){ return { success: response.ok }; });
+          })
+          .then(function(result){
+            setLoading(false);
+            if (result && result.success) {
+              showBanner("Thanks! You're subscribed for pipeline updates.", "success");
+              form.reset();
+            } else {
+              showBanner((result && result.message) || "Something went wrong. Please try again.", "error");
+            }
+          })
+          .catch(function(){
+            setLoading(false);
+            showBanner("We couldn't reach the server. Please try again.", "error");
+          });
+      });
+    })();
+
+    /* ---------- Chat widget ---------- */
+    (function(){
+      var launcher = document.getElementById("chatLauncher");
+      if (!launcher) { return; }
+      var panel = document.getElementById("chatPanel");
+      var closeBtn = document.getElementById("chatCloseBtn");
+      var messagesEl = document.getElementById("chatMessages");
+      var form = document.getElementById("chatForm");
+      var textarea = document.getElementById("chatInput");
+      var sendBtn = document.getElementById("chatSendBtn");
+      var whatsappFloat = document.querySelector(".whatsapp-float");
+      var stickyCtaEl = document.getElementById("stickyCta");
+
+      // TODO: Replace sendToBackend() with real API call to backend
+      function sendToBackend(message){
+        return new Promise(function(resolve){
+          setTimeout(function(){
+            var text = message.toLowerCase();
+            var reply;
+            if (text.indexOf("service") !== -1) {
+              reply = "We build and run full data pipelines — web scraping, AI-powered parsing, and API automation — delivered as JSON, CSV, Excel, API, or webhooks. Want a free sample dataset built around your use case?";
+            } else if (text.indexOf("price") !== -1 || text.indexOf("pricing") !== -1 || text.indexOf("cost") !== -1) {
+              reply = "Pricing is scoped per pipeline based on your sources, data volume, and frequency. Most clients start with a free sample before any commitment — our engineering team can give you exact numbers on a quick call.";
+            } else if (text.indexOf("human") !== -1 || text.indexOf("talk") !== -1 || text.indexOf("contact") !== -1) {
+              reply = "Of course — you can reach our engineering team directly at info@coderaim.com, on WhatsApp, or through the contact form. Want me to point you to one of those?";
+            } else if (text.indexOf("sample") !== -1) {
+              reply = "You can request a free sample dataset, no cost or commitment — it's built around your exact requirements by our engineering team, not a generic template.";
+            } else {
+              reply = "Thanks for your message! This is a mock response for now — once this widget is connected to a real backend, I'll be able to answer that properly.";
+            }
+            resolve(reply);
+          }, 900 + Math.random() * 700);
+        });
+      }
+
+      function openChat(){
+        panel.classList.add("open");
+        panel.setAttribute("aria-hidden", "false");
+        launcher.setAttribute("aria-expanded", "true");
+        launcher.setAttribute("aria-label", "Close chat");
+        launcher.classList.add("is-hidden");
+        if (whatsappFloat) { whatsappFloat.classList.add("is-hidden"); }
+        if (stickyCtaEl) { stickyCtaEl.classList.add("is-hidden"); }
+        textarea.focus();
+      }
+      function closeChat(){
+        panel.classList.remove("open");
+        panel.setAttribute("aria-hidden", "true");
+        launcher.setAttribute("aria-expanded", "false");
+        launcher.setAttribute("aria-label", "Open chat");
+        launcher.classList.remove("is-hidden");
+        if (whatsappFloat) { whatsappFloat.classList.remove("is-hidden"); }
+        if (stickyCtaEl) { stickyCtaEl.classList.remove("is-hidden"); }
+        launcher.focus();
+      }
+      launcher.addEventListener("click", function(){
+        if (panel.classList.contains("open")) { closeChat(); } else { openChat(); }
+      });
+      closeBtn.addEventListener("click", closeChat);
+      document.addEventListener("keydown", function(event){
+        if (event.key === "Escape" && panel.classList.contains("open")) { closeChat(); }
+      });
+
+      function scrollToBottom(){
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+      }
+      function appendMessage(text, role){
+        var wrap = document.createElement("div");
+        wrap.className = "chat-msg " + role;
+        var p = document.createElement("p");
+        p.textContent = text;
+        wrap.appendChild(p);
+        messagesEl.appendChild(wrap);
+        scrollToBottom();
+        return wrap;
+      }
+      function showTyping(){
+        var wrap = document.createElement("div");
+        wrap.className = "chat-msg ai chat-msg-typing";
+        wrap.id = "chatTyping";
+        wrap.setAttribute("aria-label", "CoderAIM Assistant is typing");
+        wrap.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
+        messagesEl.appendChild(wrap);
+        scrollToBottom();
+      }
+      function hideTyping(){
+        var typing = document.getElementById("chatTyping");
+        if (typing) { typing.remove(); }
+      }
+
+      function sendMessage(rawText){
+        var text = (rawText || "").trim();
+        if (!text) { return; }
+
+        appendMessage(text, "user");
+        textarea.value = "";
+        autoResize();
+        updateSendState();
+
+        showTyping();
+        sendToBackend(text)
+          .then(function(reply){
+            hideTyping();
+            appendMessage(reply, "ai");
+          })
+          .catch(function(){
+            hideTyping();
+            appendMessage("Something went wrong reaching the assistant. Please try again or contact us at info@coderaim.com.", "error");
+          });
+      }
+
+      form.addEventListener("submit", function(event){
+        event.preventDefault();
+        sendMessage(textarea.value);
+      });
+      textarea.addEventListener("keydown", function(event){
+        if (event.key === "Enter" && !event.shiftKey) {
+          event.preventDefault();
+          sendMessage(textarea.value);
+        }
+      });
+
+      function autoResize(){
+        textarea.style.height = "auto";
+        textarea.style.height = Math.min(textarea.scrollHeight, 120) + "px";
+      }
+      function updateSendState(){
+        sendBtn.disabled = textarea.value.trim().length === 0;
+      }
+      textarea.addEventListener("input", function(){
+        autoResize();
+        updateSendState();
+      });
+
+      document.querySelectorAll(".chat-chip").forEach(function(chip){
+        chip.addEventListener("click", function(){
+          sendMessage(chip.textContent);
+        });
+      });
+    })();
+
+    /* ---------- FAQ accordion ---------- */
+    document.querySelectorAll(".faq-item").forEach(function(item){
+      var q = item.querySelector(".faq-q");
+      var a = item.querySelector(".faq-a");
+      if (item.classList.contains("open")) { a.style.maxHeight = a.scrollHeight + "px"; }
+      q.addEventListener("click", function(){
+        var isOpen = item.classList.contains("open");
+        document.querySelectorAll(".faq-item.open").forEach(function(openItem){
+          openItem.classList.remove("open");
+          openItem.querySelector(".faq-a").style.maxHeight = null;
+          openItem.querySelector(".faq-q").setAttribute("aria-expanded", "false");
+        });
+        if (!isOpen) {
+          item.classList.add("open");
+          a.style.maxHeight = a.scrollHeight + "px";
+          q.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
+
+    /* ---------- Tech deep-dive tabs ---------- */
+    var tabs = document.querySelectorAll(".tech-tab");
+    tabs.forEach(function(tab){
+      tab.addEventListener("click", function(){
+        tabs.forEach(function(t){ t.classList.remove("active"); t.setAttribute("aria-selected", "false"); });
+        document.querySelectorAll(".tech-pane").forEach(function(p){ p.classList.remove("active"); });
+        tab.classList.add("active");
+        tab.setAttribute("aria-selected", "true");
+        document.querySelector('.tech-pane[data-pane="' + tab.dataset.tab + '"]').classList.add("active");
+      });
+    });
+
+    /* ---------- Industry-card CTAs prefill the form ---------- */
+    document.querySelectorAll(".prefill-cta").forEach(function(link){
+      link.addEventListener("click", function(){
+        var industrySelect = document.getElementById("industryField");
+        var dataSelect = document.getElementById("dataTypeField");
+        if (industrySelect && link.dataset.industry) { industrySelect.value = link.dataset.industry; }
+        if (dataSelect && link.dataset.data) { dataSelect.value = link.dataset.data; }
+      });
+    });
+
+    /* ---------- Free Sample Dataset form: full working implementation ---------- */
+    var WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+    var SUBMIT_COOLDOWN_MS = 30 * 1000;
+    var COOLDOWN_KEY = "coderaim_landing_concept_last_submit";
+    var FREE_EMAIL_DOMAINS = ["gmail.com","yahoo.com","outlook.com","hotmail.com","icloud.com","aol.com","gmx.com","protonmail.com","mail.com","yandex.com","live.com","msn.com"];
+
+    var SAMPLE_FILE_MAP = {
+      "pricing": "../assets/sample-data/pricing_sample.csv",
+      "product": "../assets/sample-data/product_sample.csv",
+      "real-estate": "../assets/sample-data/real_estate_sample.csv"
+    };
+    var DATA_LABELS = {
+      "pricing": "pricing / competitor data",
+      "product": "product catalog data",
+      "real-estate": "real estate listings",
+      "financial": "financial / alt data",
+      "custom": "custom data"
+    };
+
+    var form = document.getElementById("sampleForm");
+    if (!form) { return; }
+
+    var formWrapper = document.getElementById("sampleFormWrapper");
+    var successPanel = document.getElementById("sampleSuccess");
+    var refIdEl = document.getElementById("sampleRefId");
+    var downloadBtn = document.getElementById("sampleDownloadBtn");
+    var customNote = document.getElementById("sampleCustomNote");
+    var banner = document.getElementById("formBanner");
+    var submitBtn = document.getElementById("sampleSubmitBtn");
+    var submitText = document.getElementById("sampleSubmitText");
+    var defaultSubmitLabel = submitText.textContent;
+
+    var emailField = document.getElementById("workEmailField");
+    var emailHint = document.getElementById("emailHint");
+    var companyField = document.getElementById("companyField");
+    var companyLabel = document.getElementById("companyLabel");
+    var leadEmailTypeField = document.getElementById("leadEmailType");
+
+    function domainOf(v){ return (v.split("@")[1] || "").toLowerCase().trim(); }
+    function isFreeEmailDomain(v){ return FREE_EMAIL_DOMAINS.indexOf(domainOf(v)) !== -1; }
+    function isValidEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+    if (emailField) {
+      emailField.addEventListener("blur", function(){
+        var value = emailField.value.trim();
+        var isFree = value && isValidEmail(value) && isFreeEmailDomain(value);
+        emailHint.classList.toggle("show", isFree);
+        if (leadEmailTypeField) { leadEmailTypeField.value = isFree ? "personal" : "business"; }
+        if (isFree) {
+          companyField.setAttribute("required", "required");
+          if (!companyLabel.querySelector(".req")) {
+            companyLabel.insertAdjacentHTML("beforeend", ' <span class="req">*</span>');
+          }
+        }
+      });
+    }
+
+    function setFieldError(fieldEl, hasError){
+      var group = fieldEl.closest(".f-group");
+      if (!group) { return; }
+      group.classList.toggle("has-error", hasError);
+      fieldEl.setAttribute("aria-invalid", hasError ? "true" : "false");
+    }
+
+    function validateForm(){
+      var isValid = true;
+      var firstInvalid = null;
+      form.querySelectorAll("[required]").forEach(function(field){
+        var value = (field.value || "").trim();
+        var fieldValid = true;
+        if (!value) {
+          fieldValid = false;
+        } else if (field.type === "email" && !isValidEmail(value)) {
+          fieldValid = false;
+        }
+        setFieldError(field, !fieldValid);
+        if (!fieldValid) {
+          isValid = false;
+          if (!firstInvalid) { firstInvalid = field; }
+        }
+      });
+      if (!isValid && firstInvalid) { firstInvalid.focus(); }
+      return isValid;
+    }
+
+    form.addEventListener("input", function(event){
+      var target = event.target;
+      if (target && target.closest(".f-group")) {
+        var value = (target.value || "").trim();
+        var stillInvalid = target.hasAttribute("required") && (!value || (target.type === "email" && !isValidEmail(value)));
+        if (!stillInvalid) { setFieldError(target, false); }
+      }
+    });
+    form.addEventListener("change", function(event){
+      var target = event.target;
+      if (target && target.tagName === "SELECT" && target.value) { setFieldError(target, false); }
+    });
+
+    function showBanner(message, type){
+      banner.textContent = message;
+      banner.className = "f-banner show " + (type === "error" ? "is-error" : "is-info");
+    }
+    function clearBanner(){
+      banner.textContent = "";
+      banner.className = "f-banner";
+    }
+
+    function isInCooldown(){
+      try {
+        var last = window.sessionStorage.getItem(COOLDOWN_KEY);
+        return last ? (Date.now() - parseInt(last, 10)) < SUBMIT_COOLDOWN_MS : false;
+      } catch (e) { return false; }
+    }
+    function markSubmitted(){
+      try { window.sessionStorage.setItem(COOLDOWN_KEY, String(Date.now())); } catch (e) {}
+    }
+
+    function setLoading(isLoading){
+      submitBtn.disabled = isLoading;
+      submitBtn.classList.toggle("btn-loading", isLoading);
+      submitText.textContent = isLoading ? "Sending your request..." : defaultSubmitLabel;
+    }
+
+    function generateRefId(){
+      return "SD-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
+    }
+
+    function showSuccess(dataTypeValue){
+      formWrapper.hidden = true;
+      successPanel.hidden = false;
+      refIdEl.textContent = "Reference ID: " + generateRefId();
+
+      var sampleFile = SAMPLE_FILE_MAP[dataTypeValue];
+      if (sampleFile) {
+        downloadBtn.href = sampleFile;
+        downloadBtn.hidden = false;
+        customNote.hidden = true;
+      } else {
+        downloadBtn.hidden = true;
+        customNote.textContent = "Since you requested " + (DATA_LABELS[dataTypeValue] || "a custom dataset") + ", our team will prepare a tailored sample and reach out to you directly.";
+        customNote.hidden = false;
+      }
+      successPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    form.addEventListener("submit", function(event){
+      event.preventDefault();
+      clearBanner();
+
+      if (isInCooldown()) {
+        showBanner("You've already submitted a request. Please wait a moment before trying again.", "info");
+        return;
+      }
+      if (!validateForm()) {
+        showBanner("Please fix the highlighted fields above and try again.", "error");
+        return;
+      }
+
+      setLoading(true);
+      markSubmitted();
+
+      var dataTypeValue = document.getElementById("dataTypeField").value;
+      var formData = new FormData(form);
+
+      fetch(WEB3FORMS_ENDPOINT, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: formData
+      })
+        .then(function(response){
+          return response.json().catch(function(){ return { success: response.ok }; });
+        })
+        .then(function(result){
+          setLoading(false);
+          if (result && result.success) {
+            showSuccess(dataTypeValue);
+          } else {
+            showBanner((result && result.message) || "Something went wrong while sending your request. Please try again or email us at info@coderaim.com.", "error");
+          }
+        })
+        .catch(function(){
+          setLoading(false);
+          showBanner("We couldn't reach the server. Please check your connection and try again, or email us at info@coderaim.com.", "error");
+        });
+    });
+  })();
+</script>
+</body>
+</html>

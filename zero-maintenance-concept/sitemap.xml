@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  TODO: This sitemap assumes the zero-maintenance-concept pages would deploy at
+  https://coderaim.com/zero-maintenance-concept/ (same production domain already
+  hardcoded in each page's Organization JSON-LD). Update every <loc> below to the
+  real path once a live/staging URL for this concept is decided.
+
+  zero-maintenance-404-concept.html is intentionally NOT listed — error pages
+  should never be submitted in a sitemap (see Google's sitemap guidelines).
+-->
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+<url>
+  <loc>https://coderaim.com/zero-maintenance-concept/index.html</loc>
+  <lastmod>2026-09-12T00:00:00+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://coderaim.com/zero-maintenance-concept/contact.html</loc>
+  <lastmod>2026-09-12T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://coderaim.com/zero-maintenance-concept/privacy-policy.html</loc>
+  <lastmod>2026-09-12T00:00:00+00:00</lastmod>
+  <priority>0.30</priority>
+</url>
+<url>
+  <loc>https://coderaim.com/zero-maintenance-concept/terms-and-conditions.html</loc>
+  <lastmod>2026-09-12T00:00:00+00:00</lastmod>
+  <priority>0.30</priority>
+</url>
+
+</urlset>
