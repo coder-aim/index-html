@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!-- lang="en" set here because this file is served as a standalone document. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>You're Offline | CoderAIM</title>
+<meta name="robots" content="noindex, nofollow">
+
+<!--
+  IMPORTANT: this page is served entirely from the Service Worker cache when
+  there is no network connection at all (see service-worker.js). It must be
+  100% self-contained:
+    - No Google Fonts / font CDN <link> (that's a network request).
+    - No external JS/CSS/API of any kind.
+    - The only local requests it makes are the favicon and the logo image
+      below, both of which service-worker.js precaches specifically so this
+      page always renders correctly offline.
+  Font stack below intentionally falls back to the OS's own system font
+  instead of the site's usual Archivo/Source Sans 3 (those are loaded from
+  Google Fonts elsewhere in this project and are NOT available offline).
+-->
+<link rel="icon" href="../favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+
+<style>
+  :root{
+    --ink:#0e0c17;
+    --ink-2:#171325;
+    --ink-line:rgba(255,255,255,0.10);
+    --on-ink:#efeafa;
+    --on-ink-dim:#a79bc4;
+
+    --brand-violet:#7c57ea;
+    --brand-lavender:#ce9eff;
+    --signal:#b98cff;
+    --action:#8b5fee;
+    --action-ink:#ffffff;
+
+    --shadow-lg: 0 24px 60px -24px rgba(4,8,18,0.45);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--ink);color:var(--on-ink);
+    font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    font-size:16.5px;line-height:1.65;
+  }
+  a{color:inherit;text-decoration:none;}
+  .container{max-width:560px;margin:0 auto;padding:0 28px;}
+
+  .brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:19px;color:var(--on-ink);letter-spacing:-0.01em;}
+  .brand-mark{width:30px;height:30px;flex:0 0 auto;display:block;}
+
+  .offline-hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:60px 0;background:radial-gradient(120% 140% at 50% 0%, #241a3d 0%, var(--ink) 60%);}
+  .offline-hero .container{text-align:center;}
+
+  .offline-icon{
+    width:76px;height:76px;border-radius:50%;margin:36px auto 28px;
+    background:linear-gradient(135deg, var(--brand-violet), var(--brand-lavender));
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 14px 30px -10px rgba(124,87,234,0.55);
+  }
+  .offline-icon svg{width:34px;height:34px;color:#fff;display:block;}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;font-family:ui-monospace,'SFMono-Regular',Consolas,monospace;
+    font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;margin-bottom:18px;color:var(--signal);
+  }
+  .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--signal);}
+
+  h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-0.015em;margin:0 0 16px;text-wrap:balance;}
+  p.lede{color:var(--on-ink-dim);font-size:16.5px;max-width:44ch;margin:0 auto 34px;}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15.5px;
+    padding:14px 26px;border-radius:9px;border:1px solid transparent;cursor:pointer;
+    background:var(--action);color:var(--action-ink);box-shadow:0 10px 26px -10px rgba(139,95,238,0.55);
+    transition:transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn svg{width:16px;height:16px;}
+
+  .status-note{
+    margin-top:24px;font-family:ui-monospace,'SFMono-Regular',Consolas,monospace;
+    font-size:12.5px;color:var(--on-ink-dim);letter-spacing:0.02em;
+  }
+  .status-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--on-ink-dim);margin-right:7px;vertical-align:1px;}
+  .status-note.is-online .status-dot{background:#4ade80;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .offline-icon{animation:pulse 2.4s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.7;}}
+  }
+</style>
+</head>
+
+<body>
+<main class="offline-hero">
+  <div class="container">
+    <a href="index.html" class="brand"><img src="../assets/images/logo/logo-mark-transparent.png" alt="" class="brand-mark">CoderAIM</a>
+
+    <div class="offline-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="1" y1="1" x2="23" y2="23"></line>
+        <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path>
+        <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path>
+        <path d="M10.71 5.05A16 16 0 0 1 22.58 9"></path>
+        <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path>
+        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+        <line x1="12" y1="20" x2="12.01" y2="20"></line>
+      </svg>
+    </div>
+
+    <span class="eyebrow">No Connection</span>
+    <h1>You're Offline</h1>
+    <p class="lede">Looks like you've lost your internet connection. This page is being shown from your last visit — reconnect and try again, or it'll reload automatically once you're back online.</p>
+
+    <button type="button" class="btn" id="retryBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+      Try Again
+    </button>
+
+    <p class="status-note" id="statusNote"><span class="status-dot" aria-hidden="true"></span><span id="statusText">Waiting for connection…</span></p>
+  </div>
+</main>
+
+<script>
+  (function(){
+    "use strict";
+    var retryBtn = document.getElementById("retryBtn");
+    var statusNote = document.getElementById("statusNote");
+    var statusText = document.getElementById("statusText");
+
+    retryBtn.addEventListener("click", function(){
+      window.location.reload();
+    });
+
+    function updateStatus(){
+      var online = navigator.onLine;
+      statusNote.classList.toggle("is-online", online);
+      statusText.textContent = online ? "Back online — reloading…" : "Waiting for connection…";
+      if (online) {
+        // Give the status message a beat to render before navigating away.
+        setTimeout(function(){ window.location.reload(); }, 400);
+      }
+    }
+
+    window.addEventListener("online", updateStatus);
+    window.addEventListener("offline", updateStatus);
+    updateStatus();
+  })();
+</script>
+</body>
+</html>

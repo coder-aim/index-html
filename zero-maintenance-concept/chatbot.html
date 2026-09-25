@@ -394,5 +394,19 @@
     });
   })();
 </script>
+<!-- Register the Service Worker so offline.html is available after the
+     first successful visit. Registered from every page (not just index.html)
+     so whichever page a visitor lands on first still gets the offline
+     fallback cached. See service-worker.js for what's cached and why. -->
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("service-worker.js", { scope: "./" }).catch(function (err) {
+        console.error("Service worker registration failed:", err);
+      });
+    });
+  }
+</script>
 </body>
+
 </html>
